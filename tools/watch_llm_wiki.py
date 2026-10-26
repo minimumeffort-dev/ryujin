@@ -2,23 +2,23 @@ from pathlib import Path
 from watchfiles import watch
 
 from paths import NOTES_DIR
-from queue_store import open_queue
+from queue_store import enqueue, open_database
 
 
 def main():
     if not NOTES_DIR.is_dir():
         raise SystemExit(f"Notes directory does not exist: {NOTES_DIR}")
 
-    queue = open_queue()
+    database = open_database()
 
     try:
         print(f"Watching {NOTES_DIR}", flush=True)
         print("Press Ctrl+C to stop.", flush=True)
 
         for changes in watch(NOTES_DIR, debounce=1000, step=250):
-            for change, raw_path in changes:
-                path = Path(raw_path)
+            changed_paths = {Path(raw_path) for _, raw_path in changes}
 
+            for path in sorted(changed_paths):
                 if path.suffix.lower() != ".md":
                     continue
 
@@ -26,13 +26,12 @@ def main():
 
                 job = {
                     "path": relative_path.as_posix(),
-                    "event": change.name,
                 }
-                job_id = queue.put(job)
+                job_id = enqueue(database, job)
 
-                print(f"Queued #{job_id}: {job['event']} {job['path']}", flush=True)
+                print(f"Queued #{job_id}: {job['path']}", flush=True)
     finally:
-        queue.close()
+        database.close()
 
 
 if __name__ == "__main__":
