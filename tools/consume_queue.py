@@ -1,6 +1,7 @@
 import argparse
 import json
 
+from paths import EXTRACTION_PROMPT_PATH
 from queue_store import (
     acknowledge,
     claim,
@@ -38,12 +39,18 @@ def main():
 
     try:
         if args.action == "claim":
+            prompt = EXTRACTION_PROMPT_PATH.read_text(encoding="utf-8")
+
             recover_expired(database)
             job = claim(database, args.worker, args.lease_seconds)
             result = (
                 {"status": "empty"}
                 if job is None
-                else {"status": "claimed", **job}
+                else {
+                    "status": "claimed",
+                    **job,
+                    "extraction_prompt": prompt,
+                }
             )
 
         elif args.action == "ack":

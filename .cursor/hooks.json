@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "hooks": {
+    "stop": [
+      {
+        "name": "Checking extraction queue",
+        "command": "/Users/horia/.local/bin/uv run --project /Users/horia/Projects/ryujin/tools --locked /Users/horia/Projects/ryujin/tools/queue_hook.py cursor",
+        "timeout": 10,
+        "loop_limit": 1
+      }
+    ]
+  }
+}
