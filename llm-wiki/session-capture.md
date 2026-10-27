@@ -30,7 +30,8 @@ The [graph builder](../tools/build_graph.py) rebuilds the graph from accepted
 extractions in one SQLite transaction. It preserves source-specific descriptions,
 relationships and aliases. Node IDs use the exact entity type and name, so
 distinct entities with the same type and name are treated as one node. Aliases
-are stored but do not merge identities. Graph retrieval remains unimplemented.
+are stored but do not merge identities. Graph retrieval is available through
+[recall_graph.py](../tools/recall_graph.py).
 
 Each successful extraction acknowledgment rebuilds the graph in the same SQLite
 transaction as result acceptance and job completion. A failed rebuild rolls back
@@ -52,3 +53,43 @@ Acknowledgment validates the candidate, records its project-relative path in
 transaction. Each document keeps one latest accepted result. Newer queued
 revisions return to pending, and expired or mismatched claims cannot publish
 results. Previously completed jobs are not automatically backfilled.
+
+## Graph retrieval
+
+Run `uv run --project tools --locked tools/recall_graph.py "watcher startup"`
+from the project root. The command matches full node names and aliases
+case-insensitively, keeps up to five matching nodes, and follows incoming and
+outgoing relationships with breadth-first traversal. The default is one hop;
+set `--hops 2` to include a second hop or `--hops 0` for matched nodes alone.
+It returns up to eight relationships, ranked by distance first and then
+overlapping question words in endpoint names, plus descriptions and their
+supporting `source_doc` paths. Each relationship includes its `distance`.
+
+`--traversal-limit` defaults to 100 relationship rows examined across the walk.
+Repeated rows count toward this budget, while returned relationships are
+deduplicated per source. Visited nodes prevent cycles from expanding forever.
+For example:
+
+```sh
+uv run --project tools --locked tools/recall_graph.py "ensure_watcher.py" --hops 2 --traversal-limit 100
+```
+
+`matches_truncated` and `edges_truncated` report output caps.
+`edges_examined` reports consumed traversal rows, and
+`traversal_limit_reached` signals that the budget was consumed, even if no
+additional relationships existed. A budget-limited subset can depend on
+SQLite's row order. The budget limits fetched relationship rows, not seed
+matching or SQLite execution time. The schema indexes incoming relationships
+by `target_id`; the relationship primary key already indexes outgoing ones.
+
+SQLite filters substring candidates from names and aliases before returning
+rows to Python. A connection-local `casefold` function preserves Unicode
+matching, and the existing Python regex enforces word boundaries. SQLite still
+scans the label columns; this reduces rows returned to Python rather than
+providing an indexed search.
+
+Retrieval opens the database read-only and uses one consistent snapshot during
+concurrent graph updates. Exact phrase matching can miss paraphrases; fall back
+to the wiki index when no nodes match and inspect supporting wiki pages for
+details. Agents can invoke this command explicitly. Automatic prompt-hook
+integration remains future work.

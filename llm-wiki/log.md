@@ -43,3 +43,19 @@ The [graph builder](../tools/build_graph.py) rebuilds the graph from accepted JS
 ## [2026-10-27] implementation | Automatic graph updates
 
 Connected successful extraction acknowledgment to graph rebuilding in the same SQLite transaction. Rebuild failure or lease expiry rolls back the accepted result, job completion and graph changes. Updated [the workflow](../tools/extraction/workflow.md) and [graph guidance](session-capture.md). All 18 tests passed, including automatic rebuilding, concurrent jobs, rollback and lease expiry.
+
+## [2026-10-27] implementation | Graph retrieval command
+
+Completed [recall_graph.py](../tools/recall_graph.py) with name and alias matching, one-hop relationships, source-specific descriptions and truncation flags. Retrieval uses a read-only database snapshot. Updated [retrieval guidance](session-capture.md) and the index. All 25 tests passed, including alias matching, source provenance, limits, read-only enforcement and concurrent-update consistency. Automatic prompt-hook integration remains future work.
+
+## [2026-10-27] implementation | SQLite retrieval candidate filtering
+
+Updated [recall_graph.py](../tools/recall_graph.py) to filter substring candidates in SQLite before fetching rows into Python. Preserved Unicode case folding and the existing word-boundary checks. Added tests for Unicode names and aliases and for avoiding unrelated row materialization; all 27 tests passed. Updated [retrieval guidance](session-capture.md) to distinguish reduced Python row loading from indexed search.
+
+## [2026-10-27] research | Graph retrieval comparison
+
+Compared Ryujin with graph-memory-starter's current recall implementation and checked traversal, same-name descriptions and punctuation handling in memory. Recorded [the comparison](graph-retrieval-comparison.md), including proposed bounded multi-hop retrieval and compact prompt output. Updated the index. Runtime code was not changed.
+
+## [2026-10-27] implementation | Bounded multi-hop retrieval
+
+Added configurable breadth-first traversal to [recall_graph.py](../tools/recall_graph.py), defaulting to one hop and 100 examined relationship rows. Results include distance, budget consumption and a budget flag; cycles cannot repeatedly expand nodes. Added the incoming-edge index to [the schema](../tools/schema.sql) and applied it while preserving existing table contents. All 30 tests passed, and the project CLI confirmed two-hop retrieval and budget exhaustion. Updated [retrieval guidance](session-capture.md#graph-retrieval) and [the comparison](graph-retrieval-comparison.md); compact prompt output and recall hooks remain future work.

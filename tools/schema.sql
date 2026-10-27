@@ -50,6 +50,9 @@ CREATE TABLE IF NOT EXISTS graph_edges (
     PRIMARY KEY (source_id, predicate, target_id, source_doc)
 );
 
+CREATE INDEX IF NOT EXISTS graph_edges_target
+ON graph_edges (target_id);
+
 CREATE TABLE IF NOT EXISTS graph_aliases (
     node_id TEXT NOT NULL REFERENCES graph_nodes(id),
     alias TEXT NOT NULL,
