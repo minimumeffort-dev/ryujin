@@ -33,6 +33,10 @@ class WatcherStartupTests(unittest.TestCase):
             "ensure_watcher.py",
             "watch_llm_wiki.py",
             "queue_store.py",
+            "migrations.py",
+            "source_sync.py",
+            "search_knowledge.py",
+            "engineering_graph.py",
             "schema.sql",
             "queue_hook.py",
             "recall_hook.py",
@@ -45,6 +49,7 @@ class WatcherStartupTests(unittest.TestCase):
         extraction = tools / "extraction"
         extraction.mkdir()
         shutil.copy2(TOOLS_DIR / "extraction" / "validate.py", extraction / "validate.py")
+        shutil.copy2(TOOLS_DIR / "extraction" / "engineering.py", extraction / "engineering.py")
         self.projects.append(project)
         return project
 

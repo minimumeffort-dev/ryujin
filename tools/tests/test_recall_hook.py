@@ -77,7 +77,12 @@ class RecallHookTests(unittest.TestCase):
         return output["hookSpecificOutput"]["additionalContext"]
 
     def assert_allowed_without_context(self, client, output):
-        self.assertEqual(output, {"continue": True} if client == "cursor" else {})
+        empty = {"continue": True} if client == "cursor" else {}
+        if output != empty:
+            context = self.context(client, output)
+            self.assertIn("Ryujin recall status:", context)
+            self.assertIn("llm-wiki/index.md", context)
+            self.assertNotIn("decision", output)
 
     def test_clients_receive_two_hop_facts_types_and_sources(self):
         for client in ("claude", "codex", "cursor"):
@@ -114,7 +119,10 @@ class RecallHookTests(unittest.TestCase):
                     record = self.records()[-1]
                     self.assertEqual(record["status"], "no_matches" if event.get("prompt") == "Unknown topic" else "no_prompt")
                     self.assertEqual(record["prompt"], event.get("prompt"))
-                    self.assertEqual(record["context"], "")
+                    if event.get("prompt") == "Unknown topic":
+                        self.assertIn("no_matches", record["context"])
+                    else:
+                        self.assertEqual(record["context"], "")
 
     def test_missing_database_is_not_created(self):
         missing = self.path.parent / "missing.sqlite3"
@@ -139,7 +147,7 @@ class RecallHookTests(unittest.TestCase):
                     self.assertIn("Ryujin recall failed:", errors)
                     record = self.records()[-1]
                     self.assertEqual(record["status"], "error")
-                    self.assertEqual(record["context"], "")
+                    self.assertIn("status: error", record["context"])
                     self.assertIn("not a database", record["error"])
 
     def test_malformed_events_allow_submission_and_report_to_stderr(self):
@@ -159,7 +167,7 @@ class RecallHookTests(unittest.TestCase):
         with mock.patch.object(recall_hook, "recall_graph", side_effect=attempt_write):
             output, errors = self.invoke("codex", {"prompt": "Refund policy"})
 
-        self.assertEqual(output, {})
+        self.assert_allowed_without_context("codex", output)
         self.assertIn("readonly", errors)
         self.assertEqual(self.database.execute("SELECT COUNT(*) FROM graph_nodes").fetchone()[0], 3)
 

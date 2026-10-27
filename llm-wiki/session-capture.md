@@ -1,36 +1,18 @@
-# Session capture fallback
+# Session capture, graph publication and recall
 
-## Decision
+## Purpose
 
-Deferred on 2026-10-27. Continue using [AGENTS.md](../AGENTS.md) to maintain
-the wiki during normal work. No transcript capture has been implemented.
+Explain deferred transcript capture and the implemented path from accepted wiki extractions to graph publication, retrieval and prompt context. See [the architecture map](architecture.md) and [normal wiki capture](wiki-maintenance.md).
 
-The watcher queues notes after they are written. It cannot recover useful
-conversation knowledge that an agent never saved before compaction or session end.
+## Current behavior
 
-## Future proposal
-
-- At compaction or session end, persist a bounded selection of user and assistant
-  text for later review. Filter out tool output, thinking and injected harness text.
-- Have an available agent turn useful material into concise wiki updates, keeping
-  decisions, verified findings, proposals and open questions distinct.
-- Reuse atomic claims, leases and retries for concurrent processing. Keep failures
-  visible and retain staged input until processing succeeds.
-- Adapt capture to each client's supported lifecycle events and transcript format.
-  Keep topic pages as the main knowledge base; capture is a fallback.
-
-This proposal is inspired by graph-memory-starter's
-[session-end staging](https://github.com/Glitch-Cat-Club/graph-memory-starter/blob/496a6e9d9b9578943ec5ed34c2780de5a0fa5510/digest/session_end.py)
-and [next-session handoff](https://github.com/Glitch-Cat-Club/graph-memory-starter/blob/496a6e9d9b9578943ec5ed34c2780de5a0fa5510/digest/session_start.py).
-It does not guarantee that every session yields useful notes.
-
-## Graph building
-
+### Graph building
 The [graph builder](../tools/build_graph.py) rebuilds the graph from accepted
 extractions in one SQLite transaction. It preserves source-specific descriptions,
-relationships and aliases. Node IDs use the exact entity type and name, so
-distinct entities with the same type and name are treated as one node. Aliases
-are stored but do not merge identities. Graph retrieval is available through
+relationships and aliases. Version-two node IDs use canonical engineering keys,
+including path and qualified symbol for code, so display-name collisions do not
+merge distinct symbols. Legacy extractions retain their original type/name
+identity. Aliases are stored but do not merge identities. Graph retrieval is available through
 [recall_graph.py](../tools/recall_graph.py).
 
 Each successful extraction acknowledgment rebuilds the graph in the same SQLite
@@ -50,15 +32,19 @@ As of 2026-10-27, the [extraction workflow](../tools/extraction/workflow.md) sav
 candidate JSON and acknowledges jobs through [the queue](../tools/queue_store.py).
 Acknowledgment validates the candidate, records its project-relative path in
 `extraction_results`, rebuilds the graph and completes the job in one SQLite
-transaction. Each document keeps one latest accepted result. Newer queued
+transaction. Version-two acceptance also saves exact source snapshots and immutable
+result/prompt/hash metadata, validates source-section evidence and rejects source
+edits not yet observed by the watcher. Each document keeps one latest accepted result,
+while earlier accepted versions remain archived and searchable with --include-history. Newer queued
 revisions return to pending, and expired or mismatched claims cannot publish
 results. Previously completed jobs are not automatically backfilled.
 
-## Graph retrieval
 
+### Graph retrieval
 Run `uv run --project tools --locked tools/recall_graph.py "watcher startup"`
-from the project root. The command matches full node names and aliases
-case-insensitively, keeps up to five matching nodes, and follows incoming and
+from the project root. The command combines full node-name and alias matching
+with ranked FTS5 searches of fact text and selected source passages, keeps up to
+five matching nodes, and follows incoming and
 outgoing relationships with breadth-first traversal. The default is one hop;
 set `--hops 2` to include a second hop or `--hops 0` for matched nodes alone.
 It returns up to eight relationships, ranked by distance first and then
@@ -91,10 +77,17 @@ providing an indexed search.
 Retrieval opens the database read-only and uses one consistent snapshot during
 concurrent graph updates. Exact phrase matching can miss paraphrases; fall back
 to the wiki index when no nodes match and inspect supporting wiki pages for
-details. Agents can invoke this command explicitly.
+details. Agents can invoke this command explicitly. Prompt hooks now report a
+visible miss/error/empty-index status instead of silently returning no context.
+Facts precede relationship expansion in context, with state, source evidence,
+code/revision references and source-snapshot freshness. Navigation, ledger,
+deleted and superseded material is excluded by default; --include-history makes
+preserved earlier results and those sources available explicitly. See the
+[engineering knowledge model](engineering-knowledge-model.md) for the schema,
+attribution contracts and migration.
 
-## Prompt-time graph recall
 
+### Prompt-time graph recall
 The shared [recall hook](../tools/recall_hook.py) reads the submitted `prompt`,
 queries the graph through a read-only snapshot and formats source-backed facts
 as reference data. The configured hooks use two hops and the default budget of
@@ -123,10 +116,14 @@ All 39 tests passed on 2026-10-27, including client output shapes, read-only
 enforcement, snapshot consistency, partial results, context limits and failure
 handling. Configured commands also returned context from the project graph,
 and relocation tests covered nested directories, spaces and a minimal PATH.
-Delivery into live Claude, Codex and Cursor model contexts has not been verified.
+A subsequent Codex chat on 2026-10-27 recorded automatic hook invocations, including
+an unmatched natural-language question. A later turn in that chat supplied the
+graph-context message to the model, confirming delivery there. Claude and Cursor
+delivery remain unverified. See the [engineering knowledge model](engineering-knowledge-model.md)
+for the observed retrieval miss and implemented changes.
 
-## Recall log
 
+### Recall log
 The shared [recall hook](../tools/recall_hook.py) appends one JSON record per
 invocation to `.state/recall_runs.jsonl`, using
 [the shared path definition](../tools/paths.py). Records contain a UTC timestamp,
@@ -136,7 +133,7 @@ context, context length and any retrieval error. Graph results preserve matched
 nodes, descriptions, source paths, relationships and traversal metadata, including
 information omitted from the capped text context.
 
-Statuses are `matched`, `no_matches`, `no_prompt`, `missing_database` and `error`.
+Statuses are `matched`, `no_matches`, `empty_index`, `no_prompt`, `missing_database` and `error`.
 JSON escaping keeps multiline prompts and context in one record per line.
 File locking prevents concurrent processes from interleaving records. Log write
 failures are reported to stderr after emitting the normal hook response, so
@@ -159,3 +156,53 @@ exact output correspondence, Unicode and multiline prompts, client/session
 metadata, misses, missing databases, errors, log write failures, concurrent
 processes and logging from relocated hook commands. Test records stay in
 temporary projects rather than the real project log.
+
+## Code locations
+
+[build_graph.py](../tools/build_graph.py) publishes accepted results; [queue_store.py](../tools/queue_store.py), `acknowledge`, accepts candidates transactionally. [recall_graph.py](../tools/recall_graph.py), [search_knowledge.py](../tools/search_knowledge.py) and [recall_hook.py](../tools/recall_hook.py) retrieve and format context. [paths.py](../tools/paths.py) defines local state paths.
+
+## Constraints
+
+Saved notes are required before extraction. No transcript capture has been implemented. Recall is bounded, lexical and read-only; source-snapshot freshness does not prove current code behavior. Hook output logs establish what was returned, while client model delivery requires an independent observation.
+
+## Decisions and reasoning
+
+### Decision
+Deferred on 2026-10-27. Continue using [AGENTS.md](../AGENTS.md) to maintain
+the wiki during normal work. No transcript capture has been implemented.
+
+The watcher queues notes after they are written. It cannot recover useful
+conversation knowledge that an agent never saved before compaction or session end.
+
+
+### Future proposal
+- At compaction or session end, persist a bounded selection of user and assistant
+  text for later review. Filter out tool output, thinking and injected harness text.
+- Have an available agent turn useful material into concise wiki updates, keeping
+  decisions, verified findings, proposals and open questions distinct.
+- Reuse atomic claims, leases and retries for concurrent processing. Keep failures
+  visible and retain staged input until processing succeeds.
+- Adapt capture to each client's supported lifecycle events and transcript format.
+  Keep topic pages as the main knowledge base; capture is a fallback.
+
+This proposal is inspired by graph-memory-starter's
+[session-end staging](https://github.com/Glitch-Cat-Club/graph-memory-starter/blob/496a6e9d9b9578943ec5ed34c2780de5a0fa5510/digest/session_end.py)
+and [next-session handoff](https://github.com/Glitch-Cat-Club/graph-memory-starter/blob/496a6e9d9b9578943ec5ed34c2780de5a0fa5510/digest/session_start.py).
+It does not guarantee that every session yields useful notes.
+
+## Verification
+
+The dated test milestones in the behavior sections describe the versions checked at those times. [The retrieval comparison](graph-retrieval-comparison.md#verified-codex-model-delivery) records the controlled 2026-10-28 Codex model-delivery result. [Wiki maintenance](wiki-maintenance.md#verification) records verification of the subsequent Stop capture change. A test result does not establish deployment.
+
+## Ownership
+
+Codex standardized this page on 2026-10-28 at Horia's request. The source does not assign an ongoing owner or identify the historical implementer of each graph/recall component. The explicitly attributed version-two change is recorded in [the engineering model](engineering-knowledge-model.md#attribution-and-ownership).
+
+## Open questions
+
+Transcript staging and review remain deferred. Claude and Cursor model delivery remain unverified. See [the engineering model](engineering-knowledge-model.md) for FTS limitations and deferred incremental publication.
+
+## Change history
+
+- 2026-10-27: Transcript capture was deferred; graph building, transactional acknowledgment, bounded recall, prompt hooks and recall logging were implemented in stages recorded in [the ledger](log.md).
+- 2026-10-28: Version-two facts, source snapshots, history and FTS5 retrieval supplemented the original graph. Standardized this topic while retaining existing graph/retrieval section anchors and dated evidence.

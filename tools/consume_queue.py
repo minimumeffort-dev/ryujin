@@ -2,6 +2,8 @@ import argparse
 import json
 
 from paths import EXTRACTION_PROMPT_PATH
+import queue_store
+from source_sync import synchronize_sources
 from queue_store import (
     acknowledge,
     claim,
@@ -41,6 +43,9 @@ def main():
         if args.action == "claim":
             prompt = EXTRACTION_PROMPT_PATH.read_text(encoding="utf-8")
 
+            synchronize_sources(database, queue_store.NOTES_DIR, queue_store.PROJECT_ROOT,
+                                EXTRACTION_PROMPT_PATH)
+
             recover_expired(database)
             job = claim(database, args.worker, args.lease_seconds)
             result = (
@@ -50,6 +55,11 @@ def main():
                     "status": "claimed",
                     **job,
                     "extraction_prompt": prompt,
+                    "existing_entities": [dict(row) for row in database.execute(
+                        """SELECT k.entity_key,n.name,n.type FROM graph_entity_keys k
+                           JOIN graph_nodes n ON n.id=k.node_id
+                           WHERE k.entity_key NOT LIKE 'legacy:%'
+                           ORDER BY k.entity_key LIMIT 100""")],
                 }
             )
 

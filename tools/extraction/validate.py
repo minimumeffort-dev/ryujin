@@ -2,6 +2,12 @@ import argparse
 import json
 
 from pathlib import Path
+import sys
+
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from extraction.engineering import SCHEMA_VERSION, validate_engineering
 
 ENTITY_TYPES = {"PERSON", "ROLE", "POLICY", "PROCESS", "DOCUMENT"}
 
@@ -14,7 +20,7 @@ FIELDS = {
 }
 
 
-def validate_extraction(data, expected_source):
+def validate_legacy(data, expected_source):
     required = {"source_doc", "nodes", "edges", "aliases"}
 
     if not isinstance(data, dict) or set(data) != required:
@@ -78,20 +84,28 @@ def validate_extraction(data, expected_source):
     return data
 
 
-def load_extraction(path, expected_source):
+def validate_extraction(data, expected_source, *, source_text=None):
+    if isinstance(data, dict) and "schema_version" in data:
+        return validate_engineering(data, expected_source, source_text=source_text)
+    return validate_legacy(data, expected_source)
+
+
+def load_extraction(path, expected_source, *, source_text=None):
     text = Path(path).read_text(encoding="utf-8")
     data = json.loads(text)
-    return validate_extraction(data, expected_source)
+    return validate_extraction(data, expected_source, source_text=source_text)
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("path", type=Path)
     parser.add_argument("--source-doc", required=True)
+    parser.add_argument("--source-file", type=Path)
     args = parser.parse_args()
 
     try:
-        load_extraction(args.path, args.source_doc)
+        snapshot = args.source_file.read_text(encoding="utf-8") if args.source_file else None
+        load_extraction(args.path, args.source_doc, source_text=snapshot)
     except (OSError, ValueError) as error:
         parser.error(str(error))
 

@@ -17,8 +17,8 @@ MAX_CONTEXT_CHARS = 6000
 
 
 def format_context(result):
-    if not result["matches"]:
-        return ""
+    if not result["matches"] and not result.get("facts"):
+        return fallback_context(result.get("status", "no_matches"))
 
     lines = [
         "Ryujin graph context:",
@@ -38,16 +38,32 @@ def format_context(result):
         for node in result["nodes"]
     }
 
+    for fact in result.get("facts", []):
+        evidence = fact["evidence"][0] if fact["evidence"] else {}
+        locator = fact["source_doc"] + ("#" + evidence["section"] if evidence.get("section") else "")
+        details = "; ".join(filter(None, (fact["state"],fact["lifecycle"],
+                                         "freshness=" + fact["freshness"])))
+        lines.append(f"- {fact['title']} [{details}] [source: {locator}]: {fact['text']}")
+        if evidence.get("code_path"):
+            code_ref = evidence["code_path"] + ("#" + evidence["symbol"] if evidence.get("symbol") else "")
+            lines.append(f"  Implementation reference: {code_ref}")
+        if evidence.get("git_ref"):
+            lines.append(f"  Recorded revision: {evidence['git_ref']}")
+
     for edge in result["edges"]:
         lines.append(
             f"- {labels[edge['source_id']]} "
             f"--{edge['predicate']}--> "
             f"{labels[edge['target_id']]} "
+            f"[state: {edge.get('state', 'legacy')}] "
             f"[source: {edge['source_doc']}]"
         )
 
     for node in result["nodes"]:
         lines.append(f"\n{labels[node['id']]}")
+
+        if result.get("facts"):
+            continue
 
         for description in node["descriptions"]:
             lines.append(
@@ -62,6 +78,15 @@ def format_context(result):
         context = context[:MAX_CONTEXT_CHARS - len(suffix)] + suffix
 
     return context
+
+
+def fallback_context(status):
+    return (
+        f"Ryujin recall status: {status}. "
+        "Try relevant feature names, paths or symbols and consult llm-wiki/index.md. "
+        "A retrieval miss is not evidence that project knowledge does not exist. "
+        "Verify current behavior against code."
+    )
 
 
 def retrieve_graph(prompt, *, hops, traversal_limit):
@@ -144,11 +169,14 @@ def main():
                 status = "missing_database"
             else:
                 context = format_context(result)
-                status = "matched" if result["matches"] else "no_matches"
+                status = result.get("status", "matched" if result["matches"] else "no_matches")
     except (OSError, ValueError, sqlite3.Error) as error:
         status = "error"
         error_message = str(error)
         print(f"Ryujin recall failed: {error}", file=sys.stderr)
+
+    if status in ("missing_database", "error"):
+        context = fallback_context(status)
 
     if args.client == "cursor":
         output = {"continue": True}

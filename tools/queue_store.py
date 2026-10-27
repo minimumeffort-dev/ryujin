@@ -3,6 +3,8 @@ import sqlite3
 import time
 from math import isfinite
 from uuid import uuid4
+from migrations import archive_result, digest, migrate
+from extraction.engineering import relative_path
 
 from extraction.validate import load_extraction
 from paths import (
@@ -28,7 +30,7 @@ def open_database():
         database.execute("PRAGMA foreign_keys = ON")
         database.execute("PRAGMA journal_mode = WAL").fetchone()
         database.execute("PRAGMA synchronous = FULL")
-        database.executescript(SCHEMA_PATH.read_text(encoding="utf-8"))
+        migrate(database, DATABASE_PATH, SCHEMA_PATH, PROJECT_ROOT)
     except Exception:
         database.close()
         raise
@@ -40,6 +42,7 @@ def enqueue(database, job):
     path = job["path"]
     if not isinstance(path, str) or not path.strip():
         raise ValueError("job path must not be empty")
+    relative_path(path)
 
     now = time.time()
 
@@ -130,7 +133,7 @@ def acknowledge(database, job_id, claim_token):
     try:
         job = database.execute(
             """
-            SELECT path, revision, claimed_revision, lease_until
+            SELECT path, payload, revision, claimed_revision, lease_until
             FROM jobs
             WHERE id = ?
               AND state = 'processing'
@@ -153,8 +156,21 @@ def acknowledge(database, job_id, claim_token):
             / f"{claim_token}.json"
         )
 
+        metadata = json.loads(job["payload"])
+        snapshot = None
+        source_hash = None
+        data = None
         if job["revision"] == job["claimed_revision"]:
-            load_extraction(result_path, source_doc)
+            if metadata.get("schema_version") == 2:
+                snapshot = (NOTES_DIR / job["path"]).read_text(encoding="utf-8")
+                source_hash = digest(snapshot)
+                if source_hash != metadata.get("source_hash"):
+                    enqueue(database, {**metadata, "source_hash": source_hash})
+            latest = database.execute("SELECT revision FROM jobs WHERE id=?", (job_id,)).fetchone()[0]
+            if latest == job["claimed_revision"]:
+                data = load_extraction(result_path, source_doc, source_text=snapshot)
+                if metadata.get("schema_version") == 2 and data.get("schema_version") != 2:
+                    raise ValueError("This claim requires extraction schema_version 2")
 
         now = time.time()
 
@@ -188,22 +204,37 @@ def acknowledge(database, job_id, claim_token):
         cursor.close()
 
         if row is not None and row["state"] == "done":
+            run_id = archive_result(
+                database, PROJECT_ROOT, source_doc, job["claimed_revision"],
+                result_path.relative_to(PROJECT_ROOT).as_posix(), now,
+                snapshot=snapshot, source_hash=source_hash,
+                prompt_hash=metadata.get("prompt_hash"),
+            )
+            database.execute(
+                """UPDATE knowledge_sources SET content_hash=COALESCE(?,content_hash),
+                   active=1,updated_at=? WHERE source_doc=?""", (source_hash,now,source_doc))
             database.execute(
                 """
                 INSERT INTO extraction_results (
-                    source_doc, revision, result_path, accepted_at
+                    source_doc, revision, result_path, accepted_at, source_hash, schema_version, extraction_id
                 )
-                VALUES (?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT(source_doc) DO UPDATE SET
                     revision = excluded.revision,
                     result_path = excluded.result_path,
-                    accepted_at = excluded.accepted_at
+                    accepted_at = excluded.accepted_at,
+                    source_hash = excluded.source_hash,
+                    schema_version = excluded.schema_version,
+                    extraction_id = excluded.extraction_id
                 """,
                 (
                     source_doc,
                     job["claimed_revision"],
                     result_path.relative_to(PROJECT_ROOT).as_posix(),
                     now,
+                    source_hash,
+                    data.get("schema_version", 1),
+                    run_id,
                 ),
             )
 
@@ -215,6 +246,12 @@ def acknowledge(database, job_id, claim_token):
             if time.time() >= job["lease_until"]:
                 database.execute("ROLLBACK")
                 return None
+
+            if snapshot is not None and (NOTES_DIR / job["path"]).read_text(encoding="utf-8") != snapshot:
+                database.execute("ROLLBACK")
+                changed = (NOTES_DIR / job["path"]).read_text(encoding="utf-8")
+                enqueue(database, {**metadata, "source_hash": digest(changed)})
+                return acknowledge(database, job_id, claim_token)
 
         database.execute("COMMIT")
         return row["state"] if row is not None else None

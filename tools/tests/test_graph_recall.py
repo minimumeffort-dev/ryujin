@@ -85,6 +85,8 @@ class GraphRecallTests(unittest.TestCase):
                 "edges_truncated": False,
                 "traversal_limit_reached": False,
                 "edges_examined": 0,
+                "facts": [],
+                "status": "no_matches",
             },
         )
 

@@ -5,8 +5,9 @@ from pathlib import Path
 
 from watchfiles import watch
 
-from paths import NOTES_DIR
-from queue_store import enqueue, open_database
+from paths import NOTES_DIR, PROJECT_ROOT, EXTRACTION_PROMPT_PATH
+from queue_store import open_database
+from source_sync import synchronize_sources
 from watcher_lock import watcher_lock
 
 
@@ -38,18 +39,10 @@ def run_watcher(ready_path):
                     if path.is_file() and path.suffix.lower() == ".md"
                 )
 
-            for path in sorted(changed_paths):
-                if path.suffix.lower() != ".md":
-                    continue
-
-                relative_path = path.relative_to(NOTES_DIR)
-
-                job = {
-                    "path": relative_path.as_posix(),
-                }
-                job_id = enqueue(database, job)
-
-                print(f"Queued #{job_id}: {job['path']}", flush=True)
+            if starting or changed_paths:
+                queued = synchronize_sources(database, NOTES_DIR, PROJECT_ROOT, EXTRACTION_PROMPT_PATH)
+                for job_id in queued:
+                    print(f"Queued #{job_id}", flush=True)
 
             if starting:
                 print(f"Watching {NOTES_DIR} (PID {os.getpid()})", flush=True)

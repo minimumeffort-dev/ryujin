@@ -4,8 +4,12 @@ from uuid import NAMESPACE_URL, uuid5
 from extraction.validate import load_extraction
 from paths import PROJECT_ROOT
 from queue_store import open_database
+from engineering_graph import index_graph, insert_engineering, insert_legacy_facts
+from migrations import digest
 
-GRAPH_TABLES = ("graph_edges", "graph_aliases", "graph_node_sources", "graph_nodes")
+GRAPH_TABLES = ("knowledge_search", "graph_fact_supersession", "graph_edge_facts",
+                "graph_fact_sources", "graph_facts", "graph_entity_keys",
+                "graph_edges", "graph_aliases", "graph_node_sources", "graph_nodes")
 
 
 def node_id(node):
@@ -13,7 +17,9 @@ def node_id(node):
     return uuid5(NAMESPACE_URL, key).hex
 
 
-def insert_extraction(database, data):
+def insert_extraction(database, data, run_id=None):
+    if data.get("schema_version") == 2:
+        return insert_engineering(database, data, run_id)
     source_doc = data["source_doc"]
     ids = {}
 
@@ -67,6 +73,8 @@ def insert_extraction(database, data):
             (ids[alias["entity"]], alias["alias"], source_doc),
         )
 
+    insert_legacy_facts(database, data, ids, run_id)
+
 
 def rebuild_graph(database):
     owns_transaction = not database.in_transaction
@@ -77,25 +85,31 @@ def rebuild_graph(database):
     try:
         accepted = database.execute(
             """
-            SELECT source_doc, result_path
+            SELECT source_doc, result_path, extraction_id
             FROM extraction_results
             ORDER BY source_doc
             """
         ).fetchall()
 
-        documents = [
-            load_extraction(
-                PROJECT_ROOT / row["result_path"],
-                row["source_doc"],
-            )
-            for row in accepted
-        ]
+        documents = []
+        for row in accepted:
+            run = database.execute("SELECT * FROM extraction_runs WHERE id=?",
+                                   (row["extraction_id"],)).fetchone()
+            path = (PROJECT_ROOT / row["result_path"]).resolve()
+            if not path.is_relative_to(PROJECT_ROOT.resolve()):
+                raise ValueError("Extraction path escaped the project")
+            if run and digest(path.read_text(encoding="utf-8")) != run["result_hash"]:
+                raise ValueError("An accepted extraction was modified")
+            snapshot = run["source_snapshot"] if run else None
+            data = load_extraction(path, row["source_doc"], source_text=snapshot)
+            documents.append((data,row["extraction_id"]))
 
         for table in GRAPH_TABLES:
             database.execute(f"DELETE FROM {table}")
 
-        for document in documents:
-            insert_extraction(database, document)
+        for document, run_id in documents:
+            insert_extraction(database, document, run_id)
+        index_graph(database)
 
         summary = {"documents": len(documents)}
 

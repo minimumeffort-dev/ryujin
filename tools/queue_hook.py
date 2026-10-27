@@ -4,7 +4,9 @@ import sqlite3
 import sys
 import time
 
-from paths import DATABASE_PATH
+from paths import DATABASE_PATH, NOTES_DIR, PROJECT_ROOT, EXTRACTION_PROMPT_PATH
+from queue_store import open_database
+from source_sync import synchronize_sources
 
 
 def has_work():
@@ -48,29 +50,50 @@ def main():
         print("{}")
         return
 
-    log_path = DATABASE_PATH.parent / "hook_runs.log"
-    log_path.parent.mkdir(parents=True, exist_ok=True)
-    with log_path.open("a", encoding="utf-8") as log:
-        timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-        log.write(
-            f"{timestamp} {client} "
-            f"{event.get('hook_event_name', 'Stop')}\n"
-        )
-
     try:
+        database = open_database()
+        try:
+            synchronize_sources(database, NOTES_DIR, PROJECT_ROOT, EXTRACTION_PROMPT_PATH)
+        finally:
+            database.close()
         ready = has_work()
-    except sqlite3.Error as error:
+        queue_status = "ready" if ready else "idle"
+    except (sqlite3.Error, OSError, ValueError) as error:
         print(f"Queue check failed: {error}", file=sys.stderr)
-        ready = False
+        queue_status = "error"
 
-    if not ready:
-        print("{}")
-        return
+    log_path = DATABASE_PATH.parent / "hook_runs.log"
+    try:
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        with log_path.open("a", encoding="utf-8") as log:
+            timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+            log.write(
+                f"{timestamp} {client} "
+                f"{event.get('hook_event_name', 'Stop')} queue={queue_status}\n"
+            )
+    except OSError as error:
+        print(f"Hook log failed: {error}", file=sys.stderr)
 
     message = (
-        "Extraction jobs are waiting. Follow the extraction workflow in "
-        "AGENTS.md using the prompt returned by claim. If that workflow "
-        "is not configured, report pending work and stop without claiming jobs."
+        "Review this task for missing durable engineering knowledge before finishing, even "
+        "when the extraction queue is empty. Follow AGENTS.md and the wiki's capture guidance. "
+        "Before extraction, update relevant topic pages and the architecture map as needed "
+        "with substantive behavior, code locations, changes, decisions and stated reasons, "
+        "constraints, observed verification, open questions and explicit attribution. "
+        "Preserve current knowledge and dated change history; keep the index and log current. "
+        "Respect requests for no file changes; skip routine, duplicate or unsupported material. "
+        "If no capture is needed, leave the wiki unchanged. "
+    )
+    message += {
+        "ready": "Extraction jobs are waiting. ",
+        "idle": "No extraction jobs were ready before this capture review; saved notes may create jobs. ",
+        "error": "The extraction queue could not be checked; report any continuing queue error. ",
+    }[queue_status]
+    message += (
+        "After capture, follow the extraction workflow in AGENTS.md, using the prompt returned "
+        "by claim, until the queue is empty. Do not edit wiki pages during extraction. "
+        "If the workflow is not configured, report that and stop without claiming jobs. "
+        "If capture is unnecessary and claim returns empty, finish without further work."
     )
 
     output = (
