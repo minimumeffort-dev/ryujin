@@ -1,10 +1,24 @@
 {
   "version": 1,
   "hooks": {
+    "sessionStart": [
+      {
+        "name": "Ensure wiki watcher",
+        "command": "sh \"${CURSOR_PROJECT_DIR}/tools/run_hook.sh\" ensure_watcher.py",
+        "timeout": 10
+      }
+    ],
+    "workspaceOpen": [
+      {
+        "name": "Ensure wiki watcher",
+        "command": "sh \"${CURSOR_PROJECT_DIR}/tools/run_hook.sh\" ensure_watcher.py",
+        "timeout": 10
+      }
+    ],
     "stop": [
       {
         "name": "Checking extraction queue",
-        "command": "/Users/horia/.local/bin/uv run --project /Users/horia/Projects/ryujin/tools --locked /Users/horia/Projects/ryujin/tools/queue_hook.py cursor",
+        "command": "sh \"${CURSOR_PROJECT_DIR}/tools/run_hook.sh\" queue_hook.py cursor",
         "timeout": 10,
         "loop_limit": 1
       }

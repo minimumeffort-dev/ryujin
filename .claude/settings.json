@@ -1,12 +1,24 @@
 {
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "statusMessage": "Ensuring wiki watcher is running",
+            "command": "sh \"${CLAUDE_PROJECT_DIR}/tools/run_hook.sh\" ensure_watcher.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [
           {
             "type": "command",
             "statusMessage": "Checking extraction queue",
-            "command": "/Users/horia/.local/bin/uv run --project /Users/horia/Projects/ryujin/tools --locked /Users/horia/Projects/ryujin/tools/queue_hook.py claude",
+            "command": "sh \"${CLAUDE_PROJECT_DIR}/tools/run_hook.sh\" queue_hook.py claude",
             "timeout": 10
           }
         ]
