@@ -3,6 +3,7 @@ import io
 import json
 from pathlib import Path
 import sqlite3
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -22,6 +23,7 @@ class RecallHookTests(unittest.TestCase):
         temporary = tempfile.TemporaryDirectory(prefix="ryujin-recall-hook-test-")
         self.addCleanup(temporary.cleanup)
         self.path = Path(temporary.name) / "graph.sqlite3"
+        self.log_path = Path(temporary.name) / "recall_runs.jsonl"
         self.database = sqlite3.connect(self.path, isolation_level=None)
         self.addCleanup(self.database.close)
         self.database.execute("PRAGMA journal_mode = WAL")
@@ -48,6 +50,12 @@ class RecallHookTests(unittest.TestCase):
         patch = mock.patch.object(recall_hook, "DATABASE_PATH", self.path)
         patch.start()
         self.addCleanup(patch.stop)
+        log_patch = mock.patch.object(recall_hook, "RECALL_LOG_PATH", self.log_path)
+        log_patch.start()
+        self.addCleanup(log_patch.stop)
+
+    def records(self):
+        return [json.loads(line) for line in self.log_path.read_text().splitlines()]
 
     def invoke(self, client, event, *, options=(), raw=None):
         output = io.StringIO()
@@ -84,6 +92,17 @@ class RecallHookTests(unittest.TestCase):
                 self.assertIn("Refunds need approval.", context)
                 self.assertIn("reference data", context)
                 self.assertEqual(errors, "")
+                record = self.records()[-1]
+                self.assertEqual(record["client"], client)
+                self.assertEqual(record["context"], context)
+                self.assertEqual(record["context_characters"], len(context))
+                self.assertEqual(record["status"], "matched")
+                self.assertEqual(record["hops"], 2)
+                self.assertEqual(record["traversal_limit"], 100)
+                self.assertEqual(record["error"], None)
+                self.assertIn("person", {node["id"] for node in record["retrieval"]["nodes"]})
+                self.assertEqual(record["retrieval"]["edges"][1]["source_doc"], "llm-wiki/roles.md")
+        self.assertEqual(len(self.records()), 3)
 
     def test_unmatched_and_empty_prompts_allow_submission(self):
         for client in ("claude", "codex", "cursor"):
@@ -92,6 +111,10 @@ class RecallHookTests(unittest.TestCase):
                     output, errors = self.invoke(client, event)
                     self.assert_allowed_without_context(client, output)
                     self.assertEqual(errors, "")
+                    record = self.records()[-1]
+                    self.assertEqual(record["status"], "no_matches" if event.get("prompt") == "Unknown topic" else "no_prompt")
+                    self.assertEqual(record["prompt"], event.get("prompt"))
+                    self.assertEqual(record["context"], "")
 
     def test_missing_database_is_not_created(self):
         missing = self.path.parent / "missing.sqlite3"
@@ -101,6 +124,8 @@ class RecallHookTests(unittest.TestCase):
                     output, errors = self.invoke(client, {"prompt": "Refund policy"})
                     self.assert_allowed_without_context(client, output)
                     self.assertEqual(errors, "")
+                    self.assertEqual(self.records()[-1]["status"], "missing_database")
+                    self.assertIsNone(self.records()[-1]["retrieval"])
         self.assertFalse(missing.exists())
 
     def test_database_errors_allow_submission_and_report_to_stderr(self):
@@ -112,6 +137,10 @@ class RecallHookTests(unittest.TestCase):
                     output, errors = self.invoke(client, {"prompt": "Refund policy"})
                     self.assert_allowed_without_context(client, output)
                     self.assertIn("Ryujin recall failed:", errors)
+                    record = self.records()[-1]
+                    self.assertEqual(record["status"], "error")
+                    self.assertEqual(record["context"], "")
+                    self.assertIn("not a database", record["error"])
 
     def test_malformed_events_allow_submission_and_report_to_stderr(self):
         for client in ("claude", "codex", "cursor"):
@@ -120,6 +149,8 @@ class RecallHookTests(unittest.TestCase):
                     output, errors = self.invoke(client, None, raw=raw)
                     self.assert_allowed_without_context(client, output)
                     self.assertIn("Ryujin recall failed:", errors)
+                    self.assertEqual(self.records()[-1]["status"], "error")
+                    self.assertIsNotNone(self.records()[-1]["error"])
 
     def test_hook_database_connection_rejects_writes(self):
         def attempt_write(database, prompt, **options):
@@ -148,10 +179,76 @@ class RecallHookTests(unittest.TestCase):
         self.assertIn("Refund policy (POLICY)", context)
         self.assertNotIn("Renamed policy", context)
         self.assertEqual(errors, "")
+        record = self.records()[-1]
+        self.assertEqual(record["context"], context)
         self.assertEqual(
             self.database.execute("SELECT name FROM graph_nodes WHERE id = 'policy'").fetchone()[0],
             "Renamed policy",
         )
+
+    def test_log_preserves_prompt_and_session_metadata_without_extra_lines(self):
+        for client in ("claude", "codex", "cursor"):
+            with self.subTest(client=client):
+                event = {
+                    "prompt": "Explain Refund policy\nこんにちは 🐉",
+                    "turn_id": "turn-123",
+                    "hook_event_name": "beforeSubmitPrompt" if client == "cursor" else "UserPromptSubmit",
+                    "conversation_id" if client == "cursor" else "session_id": f"{client}-session",
+                }
+                self.invoke(client, event)
+                record = self.records()[-1]
+                self.assertEqual(record["prompt"], event["prompt"])
+                self.assertEqual(record["session_id"], f"{client}-session")
+                self.assertEqual(record["turn_id"], "turn-123")
+                self.assertEqual(record["hook_event_name"], event["hook_event_name"])
+                self.assertTrue(record["timestamp"].endswith("+00:00"))
+        self.assertEqual(len(self.records()), 3)
+
+    def test_log_failure_preserves_hook_context_and_reports_to_stderr(self):
+        with mock.patch.object(recall_hook, "RECALL_LOG_PATH", self.path / "recall_runs.jsonl"):
+            for client in ("claude", "codex", "cursor"):
+                with self.subTest(client=client):
+                    output, errors = self.invoke(client, {"prompt": "Refund policy"})
+                    self.assertIn("Refund policy (POLICY)", self.context(client, output))
+                    self.assertIn("Ryujin recall log failed:", errors)
+
+    def test_concurrent_processes_append_complete_records(self):
+        script = """
+import sys
+from pathlib import Path
+sys.path.insert(0, sys.argv[1])
+import recall_hook
+recall_hook.RECALL_LOG_PATH = Path(sys.argv[2])
+for index in range(10):
+    recall_hook.append_recall_log({
+        'worker': sys.argv[3],
+        'index': index,
+        'context': 'Knowledge 🐉\\n' * 2000,
+    })
+"""
+        processes = [
+            subprocess.Popen(
+                [sys.executable, "-c", script, str(TOOLS_DIR), str(self.log_path), str(worker)],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            )
+            for worker in range(4)
+        ]
+        for process in processes:
+            self.addCleanup(process.wait)
+            self.addCleanup(process.kill if process.poll() is None else lambda: None)
+        for process in processes:
+            stdout, stderr = process.communicate(timeout=15)
+            self.assertEqual(process.returncode, 0, stderr)
+            self.assertEqual(stdout, "")
+        records = self.records()
+        self.assertEqual(len(records), 40)
+        self.assertEqual(
+            {(record["worker"], record["index"]) for record in records},
+            {(str(worker), index) for worker in range(4) for index in range(10)},
+        )
+        self.assertTrue(all(record["context"] == "Knowledge 🐉\n" * 2000 for record in records))
 
     def test_hop_and_traversal_options_control_context(self):
         output, errors = self.invoke(
@@ -182,6 +279,10 @@ class RecallHookTests(unittest.TestCase):
         self.assertTrue(context.endswith("[Additional context omitted.]"))
         self.assertIn("[source: llm-wiki/policy.md]", context)
         self.assertEqual(errors, "")
+        record = self.records()[-1]
+        self.assertEqual(record["context"], context)
+        policy = next(node for node in record["retrieval"]["nodes"] if node["id"] == "policy")
+        self.assertGreater(len(policy["descriptions"][0]["description"]), recall_hook.MAX_CONTEXT_CHARS)
 
 
 if __name__ == "__main__":

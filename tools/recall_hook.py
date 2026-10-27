@@ -1,10 +1,12 @@
 import argparse
 import json
+import os
 import sqlite3
 import sys
 from contextlib import closing
+from datetime import datetime, timezone
 
-from paths import DATABASE_PATH
+from paths import DATABASE_PATH, RECALL_LOG_PATH
 from recall_graph import (
     DEFAULT_HOPS,
     DEFAULT_TRAVERSAL_LIMIT,
@@ -62,9 +64,9 @@ def format_context(result):
     return context
 
 
-def retrieve_context(prompt, *, hops, traversal_limit):
+def retrieve_graph(prompt, *, hops, traversal_limit):
     if not DATABASE_PATH.is_file():
-        return ""
+        return None
 
     with closing(
         sqlite3.connect(
@@ -83,7 +85,26 @@ def retrieve_context(prompt, *, hops, traversal_limit):
             traversal_limit=traversal_limit,
         )
 
-    return format_context(result)
+    return result
+
+
+def append_recall_log(record):
+    line = json.dumps(record, ensure_ascii=False) + "\n"
+    RECALL_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+
+    with RECALL_LOG_PATH.open("a", encoding="utf-8") as log:
+        if os.name == "nt":
+            import msvcrt
+
+            log.seek(0)
+            msvcrt.locking(log.fileno(), msvcrt.LK_LOCK, 1)
+        else:
+            import fcntl
+
+            fcntl.flock(log.fileno(), fcntl.LOCK_EX)
+
+        # Closing flushes the complete record before releasing the file lock.
+        log.write(line)
 
 
 def main():
@@ -97,23 +118,36 @@ def main():
     )
     args = parser.parse_args()
 
+    event = {}
+    result = None
     context = ""
+    status = "no_prompt"
+    error_message = None
 
     try:
-        event = json.load(sys.stdin)
+        payload = json.load(sys.stdin)
 
-        if not isinstance(event, dict):
+        if not isinstance(payload, dict):
             raise ValueError("Expected a hook event object")
 
+        event = payload
         prompt = event.get("prompt", "")
 
         if isinstance(prompt, str) and prompt.strip():
-            context = retrieve_context(
+            result = retrieve_graph(
                 prompt,
                 hops=args.hops,
                 traversal_limit=args.traversal_limit,
             )
+
+            if result is None:
+                status = "missing_database"
+            else:
+                context = format_context(result)
+                status = "matched" if result["matches"] else "no_matches"
     except (OSError, ValueError, sqlite3.Error) as error:
+        status = "error"
+        error_message = str(error)
         print(f"Ryujin recall failed: {error}", file=sys.stderr)
 
     if args.client == "cursor":
@@ -130,7 +164,29 @@ def main():
                 "additionalContext": context,
             }
 
-    print(json.dumps(output, ensure_ascii=False))
+    print(json.dumps(output, ensure_ascii=False), flush=True)
+
+    try:
+        append_recall_log({
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "client": args.client,
+            "hook_event_name": event.get(
+                "hook_event_name",
+                "beforeSubmitPrompt" if args.client == "cursor" else "UserPromptSubmit",
+            ),
+            "session_id": event.get("session_id") or event.get("conversation_id"),
+            "turn_id": event.get("turn_id"),
+            "prompt": event.get("prompt"),
+            "hops": args.hops,
+            "traversal_limit": args.traversal_limit,
+            "status": status,
+            "retrieval": result,
+            "context": context,
+            "context_characters": len(context),
+            "error": error_message,
+        })
+    except OSError as error:
+        print(f"Ryujin recall log failed: {error}", file=sys.stderr)
 
 
 if __name__ == "__main__":

@@ -240,6 +240,14 @@ class WatcherStartupTests(unittest.TestCase):
                                 self.assertEqual(output["decision"], "block")
                         else:
                             self.assertEqual(output, {})
+        recall_records = [
+            json.loads(line)
+            for line in (state / "recall_runs.jsonl").read_text().splitlines()
+        ]
+        self.assertEqual(len(recall_records), 3)
+        self.assertEqual({record["client"] for record in recall_records}, {"claude", "codex", "cursor"})
+        self.assertTrue(all(record["status"] == "matched" for record in recall_records))
+        self.assertTrue(all("Portable person" in record["context"] for record in recall_records))
         self.assertEqual(len(self.pids(self.project)), 1)
 
 

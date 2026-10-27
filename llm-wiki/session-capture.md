@@ -124,3 +124,38 @@ enforcement, snapshot consistency, partial results, context limits and failure
 handling. Configured commands also returned context from the project graph,
 and relocation tests covered nested directories, spaces and a minimal PATH.
 Delivery into live Claude, Codex and Cursor model contexts has not been verified.
+
+## Recall log
+
+The shared [recall hook](../tools/recall_hook.py) appends one JSON record per
+invocation to `.state/recall_runs.jsonl`, using
+[the shared path definition](../tools/paths.py). Records contain a UTC timestamp,
+client, hook event, session or conversation ID, optional turn ID, the full prompt,
+hop and traversal settings, status, structured graph results, exact returned
+context, context length and any retrieval error. Graph results preserve matched
+nodes, descriptions, source paths, relationships and traversal metadata, including
+information omitted from the capped text context.
+
+Statuses are `matched`, `no_matches`, `no_prompt`, `missing_database` and `error`.
+JSON escaping keeps multiline prompts and context in one record per line.
+File locking prevents concurrent processes from interleaving records. Log write
+failures are reported to stderr after emitting the normal hook response, so
+logging failure does not block the prompt. The log is local runtime state and
+is covered by the existing `.state/` Git ignore rule.
+
+Watch new entries from the project root with:
+
+```sh
+tail -f .state/recall_runs.jsonl
+```
+
+For readable JSON when `jq` is installed, use
+`tail -f .state/recall_runs.jsonl | jq .`. To print the most recent returned
+context, use `tail -n 1 .state/recall_runs.jsonl | jq -r .context`.
+
+The log records what the hook returned to the client, not confirmation that the
+client delivered it to the model. All 42 tests passed on 2026-10-27, including
+exact output correspondence, Unicode and multiline prompts, client/session
+metadata, misses, missing databases, errors, log write failures, concurrent
+processes and logging from relocated hook commands. Test records stay in
+temporary projects rather than the real project log.
