@@ -91,5 +91,36 @@ providing an indexed search.
 Retrieval opens the database read-only and uses one consistent snapshot during
 concurrent graph updates. Exact phrase matching can miss paraphrases; fall back
 to the wiki index when no nodes match and inspect supporting wiki pages for
-details. Agents can invoke this command explicitly. Automatic prompt-hook
-integration remains future work.
+details. Agents can invoke this command explicitly.
+
+## Prompt-time graph recall
+
+The shared [recall hook](../tools/recall_hook.py) reads the submitted `prompt`,
+queries the graph through a read-only snapshot and formats source-backed facts
+as reference data. The configured hooks use two hops and the default budget of
+100 examined relationship rows. Context is capped at 6,000 characters, including
+the omission notice. Missing databases, unmatched prompts and retrieval errors
+allow submission to continue; errors go to stderr. Recall does not modify notes
+or the queue and makes no model calls.
+
+- [Claude settings](../.claude/settings.json) and [Codex hooks](../.codex/hooks.json)
+  run on `UserPromptSubmit`, returning `hookSpecificOutput.additionalContext`.
+- [Cursor hooks](../.cursor/hooks.json) run on `beforeSubmitPrompt`, returning
+  `continue: true` and, when matches exist, `additional_context`.
+- All three use [the portable bootstrap](../tools/run_hook.sh).
+
+Codex requires review of new or changed hook definitions through `/hooks`
+before they run; see [OpenAI's hook documentation](https://learn.chatgpt.com/docs/hooks#review-and-trust-hooks).
+Cursor's [reference](https://cursor.com/docs/hooks#beforesubmitprompt) lists only
+allow/block output, while an October 9, 2026
+[staff reply](https://forum.cursor.com/t/agents-window-ignores-sessionstart-additional-context-claude-code-project-hooks-no-longer-load-3-24-9/174143/5)
+describes `additional_context` on this event. Verify model visibility in a fresh
+chat on the installed version; successful script output alone does not prove
+client delivery. A temporary unique context marker can distinguish delivery
+from information already in conversation history.
+
+All 39 tests passed on 2026-10-27, including client output shapes, read-only
+enforcement, snapshot consistency, partial results, context limits and failure
+handling. Configured commands also returned context from the project graph,
+and relocation tests covered nested directories, spaces and a minimal PATH.
+Delivery into live Claude, Codex and Cursor model contexts has not been verified.

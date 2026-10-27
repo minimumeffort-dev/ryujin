@@ -15,6 +15,13 @@
         "timeout": 10
       }
     ],
+    "beforeSubmitPrompt": [
+      {
+        "name": "Recall wiki knowledge",
+        "command": "sh \"${CURSOR_PROJECT_DIR}/tools/run_hook.sh\" recall_hook.py cursor --hops 2",
+        "timeout": 10
+      }
+    ],
     "stop": [
       {
         "name": "Checking extraction queue",

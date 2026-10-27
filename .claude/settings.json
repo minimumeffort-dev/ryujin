@@ -12,6 +12,18 @@
         ]
       }
     ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "statusMessage": "Recalling wiki knowledge",
+            "command": "sh \"${CLAUDE_PROJECT_DIR}/tools/run_hook.sh\" recall_hook.py claude --hops 2",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [

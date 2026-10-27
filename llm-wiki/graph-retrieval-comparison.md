@@ -26,9 +26,11 @@ Ryujin preserves Unicode case folding and punctuation-aware boundaries.
 
 Ryujin returns JSON with node IDs and source-specific descriptions. Their compact
 text formatter includes descriptions selected by name, which can mix unrelated
-same-named entities. Ryujin's CLI uses a read-only snapshot; their separate Claude
-hook emits recalled text as prompt context. Ryujin's recall hook remains
-unimplemented.
+same-named entities. Ryujin's CLI and shared hook use a read-only snapshot.
+Graph-memory-starter has a separate Claude context hook. Ryujin now configures
+prompt hooks for Claude, Codex and Cursor through [one shared helper](../tools/recall_hook.py),
+which emits compact text capped at 6,000 characters. See
+[client activation and verification limits](session-capture.md#prompt-time-graph-recall).
 
 At the initial comparison, Ryujin followed only one hop. In-memory checks
 confirmed that difference on a policy-to-role-to-person chain, their same-name
@@ -39,5 +41,6 @@ not performance benchmarks.
 ## Proposed next steps
 
 Configurable, bounded multi-hop retrieval with source tracking and distance
-ranking was implemented on 2026-10-27. Compact text output for prompt injection
-and connecting the shared retriever to client hooks remain proposals.
+ranking, compact text output and shared prompt-hook wiring were implemented
+on 2026-10-27. Client context delivery remains to be verified, including Cursor's
+version-dependent prompt-hook behavior and Codex hook trust review.

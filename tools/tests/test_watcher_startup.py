@@ -35,6 +35,8 @@ class WatcherStartupTests(unittest.TestCase):
             "queue_store.py",
             "schema.sql",
             "queue_hook.py",
+            "recall_hook.py",
+            "recall_graph.py",
             "run_hook.sh",
             "pyproject.toml",
             "uv.lock",
@@ -168,6 +170,25 @@ class WatcherStartupTests(unittest.TestCase):
         notes = self.project / "llm-wiki"
         notes.mkdir()
         (notes / "portable.md").write_text("Portable project knowledge")
+        state = self.project / ".state"
+        state.mkdir()
+        with sqlite3.connect(state / "ryujin.sqlite3") as database:
+            database.executescript((self.project / "tools" / "schema.sql").read_text())
+            database.executemany(
+                "INSERT INTO graph_nodes VALUES (?, ?, ?)",
+                [
+                    ("watcher", "Portable watcher", "PROCESS"),
+                    ("role", "Portable role", "ROLE"),
+                    ("person", "Portable person", "PERSON"),
+                ],
+            )
+            database.executemany(
+                "INSERT INTO graph_edges VALUES (?, ?, ?, ?)",
+                [
+                    ("watcher", "references", "role", "llm-wiki/portable.md"),
+                    ("role", "held_by", "person", "llm-wiki/portable.md"),
+                ],
+            )
         environment = {
             **os.environ,
             "PATH": os.defpath,
@@ -188,7 +209,11 @@ class WatcherStartupTests(unittest.TestCase):
                     for handler in group.get("hooks", [group]):
                         result = subprocess.run(
                             ["sh", "-c", handler["command"]],
-                            input=json.dumps({"hook_event_name": event, "status": "completed"}),
+                            input=json.dumps({
+                                "hook_event_name": event,
+                                "status": "completed",
+                                "prompt": "Explain Portable watcher",
+                            }),
                             cwd=nested,
                             env=environment,
                             capture_output=True,
@@ -197,7 +222,18 @@ class WatcherStartupTests(unittest.TestCase):
                         )
                         self.assertEqual(result.returncode, 0, result.stderr)
                         output = json.loads(result.stdout)
-                        if event.lower() == "stop":
+                        if event in ("UserPromptSubmit", "beforeSubmitPrompt"):
+                            context = (
+                                output["additional_context"]
+                                if client == "cursor"
+                                else output["hookSpecificOutput"]["additionalContext"]
+                            )
+                            self.assertIn("Portable watcher (PROCESS)", context)
+                            self.assertIn("Portable person (PERSON)", context)
+                            self.assertIn("llm-wiki/portable.md", context)
+                            if client == "cursor":
+                                self.assertTrue(output["continue"])
+                        elif event.lower() == "stop":
                             if client == "cursor":
                                 self.assertIn("followup_message", output)
                             else:
