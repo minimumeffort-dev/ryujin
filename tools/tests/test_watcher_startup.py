@@ -40,6 +40,9 @@ class WatcherStartupTests(unittest.TestCase):
             "uv.lock",
         ):
             shutil.copy2(TOOLS_DIR / filename, tools / filename)
+        extraction = tools / "extraction"
+        extraction.mkdir()
+        shutil.copy2(TOOLS_DIR / "extraction" / "validate.py", extraction / "validate.py")
         self.projects.append(project)
         return project
 

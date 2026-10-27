@@ -24,11 +24,15 @@ When a hook reports pending extraction jobs, process them from the project root:
    Create directories as needed. Do not modify wiki notes, the index or the
    wiki log during extraction.
 
-7. After successfully saving the result, acknowledge the job:
+7. After successfully saving the result, acknowledge the job. This validates the
+   candidate, records its accepted path and rebuilds the graph in the same SQLite
+   transaction as successful queue completion:
    `uv run --project tools --locked tools/consume_queue.py ack JOB_ID --token "CLAIM_TOKEN"`
-   - `done`: processing succeeded.
-   - `pending`: the note changed; discard this candidate and claim fresh work.
-   - `rejected`: ownership expired; discard this candidate.
+   - `done`: the JSON was validated, its path recorded and the graph rebuilt.
+     Keep the accepted file unchanged.
+   - `pending`: a newer revision was queued; discard this candidate and claim fresh work.
+   - `rejected`: stop processing this claim. Leave the candidate file in place;
+     an earlier acknowledgment may already have committed.
 
 8. On a processing failure, report it through:
    `uv run --project tools --locked tools/consume_queue.py retry JOB_ID --token "CLAIM_TOKEN" --error "ERROR_DETAILS"`

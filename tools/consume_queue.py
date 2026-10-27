@@ -91,7 +91,7 @@ def main():
         if args.action in ("ack", "retry", "renew"):
             result["id"] = args.job_id
 
-    except ValueError as error:
+    except (OSError, ValueError) as error:
         parser.error(str(error))
     finally:
         database.close()

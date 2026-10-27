@@ -23,3 +23,23 @@ Reduced [AGENTS.md](../AGENTS.md) from 77 to 22 lines. Kept essential wiki and P
 ## [2026-10-27] maintenance | Group extraction documents
 
 Grouped [the prompt](../tools/extraction/prompt.md) and [the workflow](../tools/extraction/workflow.md) in `tools/extraction/`, preserving their contents. Updated the code path and Markdown links, including the historical workflow link above.
+
+## [2026-10-27] decision | Defer session capture
+
+Recorded [session capture](session-capture.md) as deferred work: bounded transcript staging, later agent review and reuse of the queue's concurrency controls. Documented graph construction from accepted extraction results as the next proposed milestone. No capture or graph code was added.
+
+## [2026-10-27] implementation | Validate and register completed extractions
+
+Connected JSON validation to queue acknowledgment and recorded accepted result paths with job completion in one SQLite transaction. Updated [the workflow](../tools/extraction/workflow.md) and [the graph milestone](session-capture.md) with the implemented behavior. Added nine completion tests covering validation failures, accepted-result replacement, claim and revision checks, concurrency and rollback; all 14 completion and watcher startup tests passed. Previously completed jobs are not backfilled; graph construction remains future work.
+
+## [2026-10-27] implementation | Graph schema
+
+Added the four graph tables and enabled foreign-key checks in the database helper. Applied the schema while preserving existing queue and accepted-result records. All 14 existing tests and isolated foreign-key and source-contribution checks passed. Updated [the graph milestone](session-capture.md): the tables exist, while importing accepted JSON and retrieval remain unimplemented.
+
+## [2026-10-27] implementation | Build graph from accepted extractions
+
+The [graph builder](../tools/build_graph.py) rebuilds the graph from accepted JSON in one SQLite transaction, identifies nodes by exact type and name, and preserves source-specific information. Reprocessed `index.md` and `watcher-startup.md`, which predated accepted-result tracking, and rebuilt the graph from all four wiki notes. Updated [graph-building guidance](session-capture.md).
+
+## [2026-10-27] implementation | Automatic graph updates
+
+Connected successful extraction acknowledgment to graph rebuilding in the same SQLite transaction. Rebuild failure or lease expiry rolls back the accepted result, job completion and graph changes. Updated [the workflow](../tools/extraction/workflow.md) and [graph guidance](session-capture.md). All 18 tests passed, including automatic rebuilding, concurrent jobs, rollback and lease expiry.

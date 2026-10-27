@@ -4,7 +4,14 @@ import time
 from math import isfinite
 from uuid import uuid4
 
-from paths import DATABASE_PATH, SCHEMA_PATH
+from extraction.validate import load_extraction
+from paths import (
+    DATABASE_PATH,
+    NOTES_DIR,
+    PROJECT_ROOT,
+    SCHEMA_PATH,
+    STATE_DIR,
+)
 
 
 def open_database():
@@ -18,6 +25,7 @@ def open_database():
     database.row_factory = sqlite3.Row
 
     try:
+        database.execute("PRAGMA foreign_keys = ON")
         database.execute("PRAGMA journal_mode = WAL").fetchone()
         database.execute("PRAGMA synchronous = FULL")
         database.executescript(SCHEMA_PATH.read_text(encoding="utf-8"))
@@ -120,6 +128,34 @@ def acknowledge(database, job_id, claim_token):
     database.execute("BEGIN IMMEDIATE")
 
     try:
+        job = database.execute(
+            """
+            SELECT path, revision, claimed_revision, lease_until
+            FROM jobs
+            WHERE id = ?
+              AND state = 'processing'
+              AND claim_token = ?
+              AND lease_until > ?
+            """,
+            (job_id, claim_token, time.time()),
+        ).fetchone()
+
+        if job is None:
+            database.execute("COMMIT")
+            return None
+
+        source_doc = (NOTES_DIR / job["path"]).relative_to(PROJECT_ROOT).as_posix()
+        result_path = (
+            STATE_DIR
+            / "extractions"
+            / str(job_id)
+            / str(job["claimed_revision"])
+            / f"{claim_token}.json"
+        )
+
+        if job["revision"] == job["claimed_revision"]:
+            load_extraction(result_path, source_doc)
+
         now = time.time()
 
         cursor = database.execute(
@@ -150,6 +186,35 @@ def acknowledge(database, job_id, claim_token):
 
         row = cursor.fetchone()
         cursor.close()
+
+        if row is not None and row["state"] == "done":
+            database.execute(
+                """
+                INSERT INTO extraction_results (
+                    source_doc, revision, result_path, accepted_at
+                )
+                VALUES (?, ?, ?, ?)
+                ON CONFLICT(source_doc) DO UPDATE SET
+                    revision = excluded.revision,
+                    result_path = excluded.result_path,
+                    accepted_at = excluded.accepted_at
+                """,
+                (
+                    source_doc,
+                    job["claimed_revision"],
+                    result_path.relative_to(PROJECT_ROOT).as_posix(),
+                    now,
+                ),
+            )
+
+            # The graph builder imports this module, so load it after initialization.
+            from build_graph import rebuild_graph
+
+            rebuild_graph(database)
+
+            if time.time() >= job["lease_until"]:
+                database.execute("ROLLBACK")
+                return None
 
         database.execute("COMMIT")
         return row["state"] if row is not None else None
