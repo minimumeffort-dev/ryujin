@@ -36,6 +36,8 @@ class WatcherStartupTests(unittest.TestCase):
             "migrations.py",
             "source_sync.py",
             "search_knowledge.py",
+            "recall_selection.py",
+            "brief_context.py",
             "engineering_graph.py",
             "schema.sql",
             "queue_hook.py",
@@ -194,6 +196,8 @@ class WatcherStartupTests(unittest.TestCase):
                     ("role", "held_by", "person", "llm-wiki/portable.md"),
                 ],
             )
+            database.execute("INSERT INTO graph_node_sources VALUES (?, ?, ?)",
+                             ("watcher", "llm-wiki/portable.md", "Portable watcher starts for the host project."))
         environment = {
             **os.environ,
             "PATH": os.defpath,
@@ -233,8 +237,8 @@ class WatcherStartupTests(unittest.TestCase):
                                 if client == "cursor"
                                 else output["hookSpecificOutput"]["additionalContext"]
                             )
-                            self.assertIn("Portable watcher (PROCESS)", context)
-                            self.assertIn("Portable person (PERSON)", context)
+                            self.assertIn("Portable watcher", context)
+                            self.assertNotIn("Portable person", context)
                             self.assertIn("llm-wiki/portable.md", context)
                             if client == "cursor":
                                 self.assertTrue(output["continue"])
@@ -252,7 +256,8 @@ class WatcherStartupTests(unittest.TestCase):
         self.assertEqual(len(recall_records), 3)
         self.assertEqual({record["client"] for record in recall_records}, {"claude", "codex", "cursor"})
         self.assertTrue(all(record["status"] == "matched" for record in recall_records))
-        self.assertTrue(all("Portable person" in record["context"] for record in recall_records))
+        self.assertTrue(all("Portable watcher" in record["context"] for record in recall_records))
+        self.assertTrue(all("Portable person" not in record["context"] for record in recall_records))
         self.assertEqual(len(self.pids(self.project)), 1)
 
 

@@ -1,0 +1,6766 @@
+{
+  "version": 1,
+  "revision": "0a3793fcd191f5d3f562d9817f4523238d8885d0",
+  "inventory_signature": "e3cb0903daf427892b581011eeef39760729bb1fcaae7718f233848a15564631",
+  "created_at": "2026-10-28T17:09:47.968328+00:00",
+  "files": [
+    {
+      "path": "tools/pyproject.toml",
+      "hash": "a01e55fad673dcdcfa48ebbcc36215823717fce2c4db0f70a8847b584efa3659",
+      "bytes": 114,
+      "characters": 114,
+      "category": "manifest",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/watcher-startup.md",
+          "hash": "0fe7077c7b624aa3b8bb6ac00bb5b8b513d8dc5114818a469aee163e8a49981c"
+        }
+      ],
+      "entities": [
+        "feature:shared-watcher-startup"
+      ],
+      "reason": "Reviewed Python version, watchfiles dependency and standalone uv packaging.",
+      "symbols": [],
+      "imports": [],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.627955+00:00"
+    },
+    {
+      "path": "AGENTS.md",
+      "hash": "ccc8ed23460d44c204fde0b963089ad4bb4fbb6672aff71c05c2667685b97857",
+      "bytes": 4606,
+      "characters": 4606,
+      "category": "documentation",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/wiki-maintenance.md",
+          "hash": "d6b2decb9056e6ef64372639e2d772909c8f80d93e301c1a5dcb8c24245f8e44"
+        }
+      ],
+      "entities": [
+        "feature:task-boundary-wiki-capture"
+      ],
+      "reason": "Reviewed recall/capture/bootstrap/attribution obligations and comprehensive-ledger instruction.",
+      "symbols": [],
+      "imports": [],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.857962+00:00"
+    },
+    {
+      "path": "tools/bootstrap/prompt.md",
+      "hash": "439d1d9149784812fdad9c236b57ae947ecbb188de6f8a53a9605a0ff28137e3",
+      "bytes": 2113,
+      "characters": 2113,
+      "category": "documentation",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/codebase-bootstrap.md",
+          "hash": "7e68778e2a82e020f4e16bd0d537d93e0c258c5ed31530ec20bf1310cfc4e4e9"
+        }
+      ],
+      "entities": [
+        "feature:existing-codebase-bootstrap"
+      ],
+      "reason": "Reviewed current-agent source interpretation, uncertainty and preserved-knowledge handoff.",
+      "symbols": [],
+      "imports": [],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.978466+00:00"
+    },
+    {
+      "path": "tools/bootstrap/workflow.md",
+      "hash": "228d119f3a438ea42ec6dfb5c20f48003b193bb827032737c96f95d3db403773",
+      "bytes": 4708,
+      "characters": 4708,
+      "category": "documentation",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/codebase-bootstrap.md",
+          "hash": "7e68778e2a82e020f4e16bd0d537d93e0c258c5ed31530ec20bf1310cfc4e4e9"
+        }
+      ],
+      "entities": [
+        "feature:existing-codebase-bootstrap"
+      ],
+      "reason": "Reviewed inventory/read/finish/publication and comprehensive coverage commands.",
+      "symbols": [],
+      "imports": [],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.001115+00:00"
+    },
+    {
+      "path": "tools/extraction/prompt.md",
+      "hash": "04ef1e614f33166186f1c97287c3d24498c2c94402daf18bc855d6bbd803b0d7",
+      "bytes": 5773,
+      "characters": 5773,
+      "category": "documentation",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/extraction-contract.md",
+          "hash": "a87ed8af313ec2847fc908226fdf32c760136c0858340a8ace3482ed0d788729"
+        }
+      ],
+      "entities": [
+        "feature:engineering-knowledge-extraction"
+      ],
+      "reason": "Reviewed semantic entity/fact vocabulary, canonical keys, evidence and separate actor roles.",
+      "symbols": [],
+      "imports": [],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.113993+00:00"
+    },
+    {
+      "path": "tools/extraction/workflow.md",
+      "hash": "b036dfc03552a31bd95c438acda05afade92fd340139bb7bf5194342f1046b59",
+      "bytes": 3126,
+      "characters": 3126,
+      "category": "documentation",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/extraction-contract.md",
+          "hash": "a87ed8af313ec2847fc908226fdf32c760136c0858340a8ace3482ed0d788729"
+        }
+      ],
+      "entities": [
+        "feature:engineering-knowledge-extraction"
+      ],
+      "reason": "Reviewed claim/current-agent extraction/validation/lease/ack protocol and immutable accepted inputs.",
+      "symbols": [],
+      "imports": [],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.137406+00:00"
+    },
+    {
+      "path": "tools/wiki/topic-template.md",
+      "hash": "461e57355a60fe2bdd5624600f05583d2246a10cdcc920e33b09ff689a918734",
+      "bytes": 1863,
+      "characters": 1863,
+      "category": "documentation",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/wiki-maintenance.md",
+          "hash": "d6b2decb9056e6ef64372639e2d772909c8f80d93e301c1a5dcb8c24245f8e44"
+        }
+      ],
+      "entities": [
+        "feature:task-boundary-wiki-capture"
+      ],
+      "reason": "Reviewed source-backed behavior, decisions, verification and attribution page contract.",
+      "symbols": [],
+      "imports": [],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.881704+00:00"
+    },
+    {
+      "path": ".claude/settings.json",
+      "hash": "50f728baccf90c4094323ca8b95d174a821ded1503f673ce8785afd759079c30",
+      "bytes": 950,
+      "characters": 950,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/watcher-startup.md",
+          "hash": "0fe7077c7b624aa3b8bb6ac00bb5b8b513d8dc5114818a469aee163e8a49981c"
+        }
+      ],
+      "entities": [
+        "feature:shared-watcher-startup"
+      ],
+      "reason": "Reviewed SessionStart, prompt and Stop command wiring and timeout.",
+      "symbols": [],
+      "imports": [],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.651504+00:00"
+    },
+    {
+      "path": ".codex/hooks.json",
+      "hash": "51571afaa1d2374c63dc5633df73d2dc96a8bd021f7c263dce743bc7759be89d",
+      "bytes": 988,
+      "characters": 988,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/watcher-startup.md",
+          "hash": "0fe7077c7b624aa3b8bb6ac00bb5b8b513d8dc5114818a469aee163e8a49981c"
+        }
+      ],
+      "entities": [
+        "feature:shared-watcher-startup"
+      ],
+      "reason": "Reviewed startup/prompt/Stop definitions, native progress and project-root resolution.",
+      "symbols": [],
+      "imports": [],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.674083+00:00"
+    },
+    {
+      "path": ".cursor/hooks.json",
+      "hash": "a7543097ca0eaa5dd975ae749df494d55df75bb8783194dcf759ff26b8ab7e74",
+      "bytes": 856,
+      "characters": 856,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/watcher-startup.md",
+          "hash": "0fe7077c7b624aa3b8bb6ac00bb5b8b513d8dc5114818a469aee163e8a49981c"
+        }
+      ],
+      "entities": [
+        "feature:shared-watcher-startup"
+      ],
+      "reason": "Reviewed session/workspace lifecycle, prompt adapter and bounded Stop continuation.",
+      "symbols": [],
+      "imports": [],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.697221+00:00"
+    },
+    {
+      "path": ".gitignore",
+      "hash": "13aa34da75de878eb0ef5de7bb89c8b81ad4cb8ec64216fa7e32a69f338d4851",
+      "bytes": 123,
+      "characters": 123,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/watcher-startup.md",
+          "hash": "0fe7077c7b624aa3b8bb6ac00bb5b8b513d8dc5114818a469aee163e8a49981c"
+        }
+      ],
+      "entities": [
+        "feature:shared-watcher-startup"
+      ],
+      "reason": "Reviewed exclusions for local runtime state, virtualenv and Python caches.",
+      "symbols": [],
+      "imports": [],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.720343+00:00"
+    },
+    {
+      "path": "tools/bootstrap_knowledge.py",
+      "hash": "87f23e16b5201e8ed0527b0946452c91da01a494769ecd36cc814bc5ed515fa8",
+      "bytes": 17504,
+      "characters": 17504,
+      "category": "source",
+      "chunks": 2,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/codebase-bootstrap.md",
+          "hash": "7e68778e2a82e020f4e16bd0d537d93e0c258c5ed31530ec20bf1310cfc4e4e9"
+        }
+      ],
+      "entities": [
+        "feature:existing-codebase-bootstrap"
+      ],
+      "reason": "Reviewed source discovery/exclusions/budgets, hashes/chunks/drift and accepted baseline tracking.",
+      "symbols": [
+        {
+          "key": "code:tools/bootstrap_knowledge.py#timestamp",
+          "symbol": "timestamp",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 37,
+              "end_line": 38,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#digest",
+          "symbol": "digest",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 41,
+              "end_line": 42,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#state_path",
+          "symbol": "state_path",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 45,
+              "end_line": 46,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#load_state",
+          "symbol": "load_state",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 49,
+              "end_line": 55,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#save_state",
+          "symbol": "save_state",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 58,
+              "end_line": 67,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#git",
+          "symbol": "git",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 70,
+              "end_line": 71,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#candidate_paths",
+          "symbol": "candidate_paths",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 74,
+              "end_line": 86,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#category",
+          "symbol": "category",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 89,
+              "end_line": 95,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#inventory",
+          "symbol": "inventory",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 98,
+              "end_line": 143,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#start",
+          "symbol": "start",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 146,
+              "end_line": 166,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#next_chunk",
+          "symbol": "next_chunk",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 169,
+              "end_line": 174,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#read_chunk",
+          "symbol": "read_chunk",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 177,
+              "end_line": 210,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#register_notes",
+          "symbol": "register_notes",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 213,
+              "end_line": 264,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#status",
+          "symbol": "status",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 267,
+              "end_line": 293,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#positive",
+          "symbol": "positive",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 296,
+              "end_line": 300,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/bootstrap_knowledge.py#main",
+          "symbol": "main",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 303,
+              "end_line": 346,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "argparse",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "contextlib",
+          "name": "closing",
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "datetime",
+          "name": "datetime",
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "datetime",
+          "name": "timezone",
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "fnmatch",
+          "name": "fnmatch",
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "hashlib",
+          "name": "sha256",
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "os",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "re",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 11,
+          "scope": ""
+        },
+        {
+          "module": "subprocess",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 12,
+          "scope": ""
+        },
+        {
+          "module": "tempfile",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 13,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "DATABASE_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 15,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "EXTRACTION_PROMPT_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 15,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "NOTES_DIR",
+          "alias": null,
+          "level": 0,
+          "line": 15,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "PROJECT_ROOT",
+          "alias": null,
+          "level": 0,
+          "line": 15,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "STATE_DIR",
+          "alias": null,
+          "level": 0,
+          "line": 15,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": "open_database",
+          "alias": null,
+          "level": 0,
+          "line": 16,
+          "scope": ""
+        },
+        {
+          "module": "source_sync",
+          "name": "synchronize_sources",
+          "alias": null,
+          "level": 0,
+          "line": 17,
+          "scope": ""
+        },
+        {
+          "module": "watcher_lock",
+          "name": "file_lock",
+          "alias": null,
+          "level": 0,
+          "line": 18,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.023162+00:00"
+    },
+    {
+      "path": "tools/brief_context.py",
+      "hash": "e2e957b3d7bcc55b199c76f2018b231da7e9fec3f041c6c6ef02874c4618b20f",
+      "bytes": 4335,
+      "characters": 4335,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/graph-retrieval-comparison.md",
+          "hash": "dc1b612e16f49c59f07e2355d91bb765b57e64a20234f92643525d3a4bf86358"
+        }
+      ],
+      "entities": [
+        "feature:selective-graph-recall"
+      ],
+      "reason": "Reviewed whole-record packing, references, citations, expansion guidance and delivery budgets.",
+      "symbols": [
+        {
+          "key": "code:tools/brief_context.py#format_brief",
+          "symbol": "format_brief",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 4,
+              "end_line": 80,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/brief_context.py#format_brief.render",
+          "symbol": "format_brief.render",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 11,
+              "end_line": 66,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/brief_context.py#format_brief.render.source_ref",
+          "symbol": "format_brief.render.source_ref",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 17,
+              "end_line": 21,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.481227+00:00"
+    },
+    {
+      "path": "tools/build_graph.py",
+      "hash": "f6c4ae400bb4e120e739fb20a8fbb3491c5956a854e4160a0271c0078fb768b3",
+      "bytes": 4269,
+      "characters": 4269,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/engineering-knowledge-model.md",
+          "hash": "bb4681001cec3b2f103632f2ec735d8f5faf1cc93d6a4b0529dd555c07fbef99"
+        }
+      ],
+      "entities": [
+        "component:engineering-knowledge-store"
+      ],
+      "reason": "Reviewed accepted-result hash/snapshot validation before transactional derived graph replacement.",
+      "symbols": [
+        {
+          "key": "code:tools/build_graph.py#node_id",
+          "symbol": "node_id",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 15,
+              "end_line": 17,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/build_graph.py#insert_extraction",
+          "symbol": "insert_extraction",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 20,
+              "end_line": 76,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/build_graph.py#rebuild_graph",
+          "symbol": "rebuild_graph",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 79,
+              "end_line": 127,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/build_graph.py#main",
+          "symbol": "main",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 130,
+              "end_line": 138,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "uuid",
+          "name": "NAMESPACE_URL",
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "uuid",
+          "name": "uuid5",
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "extraction.validate",
+          "name": "load_extraction",
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "PROJECT_ROOT",
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": "open_database",
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "engineering_graph",
+          "name": "index_graph",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "engineering_graph",
+          "name": "insert_engineering",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "engineering_graph",
+          "name": "insert_legacy_facts",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "migrations",
+          "name": "digest",
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.343007+00:00"
+    },
+    {
+      "path": "tools/consume_queue.py",
+      "hash": "529216246b2d80a43be59c626d8d4f448aa1f7b30645b6bd0888f0de75192d02",
+      "bytes": 3703,
+      "characters": 3703,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/extraction-queue.md",
+          "hash": "79c329ef7179aa3323b9ba50edc78f84064762d8c0ff4b546aacea23dfe430b5"
+        }
+      ],
+      "entities": [
+        "component:extraction-queue"
+      ],
+      "reason": "Reviewed claim reconciliation, prompt/key return, candidate handling and CLI failures.",
+      "symbols": [
+        {
+          "key": "code:tools/consume_queue.py#main",
+          "symbol": "main",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 17,
+              "end_line": 112,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "argparse",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "EXTRACTION_PROMPT_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "source_sync",
+          "name": "synchronize_sources",
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": "acknowledge",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": "claim",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": "open_database",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": "recover_expired",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": "renew",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": "retry",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.249126+00:00"
+    },
+    {
+      "path": "tools/engineering_graph.py",
+      "hash": "e68a83dbf0f4a317dd0661f31d26e9686d1c2ab98ab04b07ca1c67d28a826bca",
+      "bytes": 7242,
+      "characters": 7242,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/engineering-knowledge-model.md",
+          "hash": "bb4681001cec3b2f103632f2ec735d8f5faf1cc93d6a4b0529dd555c07fbef99"
+        }
+      ],
+      "entities": [
+        "component:engineering-knowledge-store"
+      ],
+      "reason": "Reviewed UUID5 identities, source-specific contributions, FTS indexing, heading fallback and history/supersession.",
+      "symbols": [
+        {
+          "key": "code:tools/engineering_graph.py#entity_id",
+          "symbol": "entity_id",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 7,
+              "end_line": 8,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/engineering_graph.py#fact_id",
+          "symbol": "fact_id",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 11,
+              "end_line": 12,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/engineering_graph.py#insert_engineering",
+          "symbol": "insert_engineering",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 15,
+              "end_line": 56,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/engineering_graph.py#insert_legacy_facts",
+          "symbol": "insert_legacy_facts",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 59,
+              "end_line": 73,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/engineering_graph.py#index_graph",
+          "symbol": "index_graph",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 76,
+              "end_line": 132,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "uuid",
+          "name": "NAMESPACE_URL",
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "uuid",
+          "name": "uuid5",
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "re",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.366335+00:00"
+    },
+    {
+      "path": "tools/ensure_watcher.py",
+      "hash": "ba281cb6927bbed7f65c3f1ba9ef8f0dc47c963f6de255a82af394585aca75bc",
+      "bytes": 2353,
+      "characters": 2353,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/watcher-startup.md",
+          "hash": "0fe7077c7b624aa3b8bb6ac00bb5b8b513d8dc5114818a469aee163e8a49981c"
+        }
+      ],
+      "entities": [
+        "feature:shared-watcher-startup"
+      ],
+      "reason": "Reviewed singleton reuse, detached startup, readiness deadline and failed-child cleanup.",
+      "symbols": [
+        {
+          "key": "code:tools/ensure_watcher.py#ensure_watcher",
+          "symbol": "ensure_watcher",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 13,
+              "end_line": 71,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "os",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "subprocess",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "sys",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "tempfile",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "time",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "PROJECT_ROOT",
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "STATE_DIR",
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "WATCHER_LOG_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "watcher_lock",
+          "name": "watcher_is_running",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.742573+00:00"
+    },
+    {
+      "path": "tools/extraction/engineering.py",
+      "hash": "18048a68d2ab723962851dce8cc435d1a993d906a15ff48382e0339b078cd25d",
+      "bytes": 8965,
+      "characters": 8965,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/extraction-contract.md",
+          "hash": "a87ed8af313ec2847fc908226fdf32c760136c0858340a8ace3482ed0d788729"
+        }
+      ],
+      "entities": [
+        "feature:engineering-knowledge-extraction"
+      ],
+      "reason": "Reviewed v2 field/type/key/path/endpoint/evidence/attribution validation and semantic limitations.",
+      "symbols": [
+        {
+          "key": "code:tools/extraction/engineering.py#text",
+          "symbol": "text",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 35,
+              "end_line": 37,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/extraction/engineering.py#fields",
+          "symbol": "fields",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 40,
+              "end_line": 42,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/extraction/engineering.py#relative_path",
+          "symbol": "relative_path",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 45,
+              "end_line": 49,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/extraction/engineering.py#section_text",
+          "symbol": "section_text",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 52,
+              "end_line": 64,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/extraction/engineering.py#validate_engineering",
+          "symbol": "validate_engineering",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 67,
+              "end_line": 170,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "pathlib",
+          "name": "PurePosixPath",
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "re",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.160045+00:00"
+    },
+    {
+      "path": "tools/extraction/validate.py",
+      "hash": "47a99ce660155322571c64ad87ed31838f476d4879a8849413e7f3e096b56658",
+      "bytes": 3925,
+      "characters": 3925,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/extraction-contract.md",
+          "hash": "a87ed8af313ec2847fc908226fdf32c760136c0858340a8ace3482ed0d788729"
+        }
+      ],
+      "entities": [
+        "feature:engineering-knowledge-extraction"
+      ],
+      "reason": "Reviewed v2/legacy dispatch, exact source checking and standalone validation CLI.",
+      "symbols": [
+        {
+          "key": "code:tools/extraction/validate.py#validate_legacy",
+          "symbol": "validate_legacy",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 23,
+              "end_line": 84,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/extraction/validate.py#validate_extraction",
+          "symbol": "validate_extraction",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 87,
+              "end_line": 90,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/extraction/validate.py#load_extraction",
+          "symbol": "load_extraction",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 93,
+              "end_line": 96,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/extraction/validate.py#main",
+          "symbol": "main",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 99,
+              "end_line": 112,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "argparse",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "sys",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "extraction.engineering",
+          "name": "SCHEMA_VERSION",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "extraction.engineering",
+          "name": "validate_engineering",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.182970+00:00"
+    },
+    {
+      "path": "tools/migrations.py",
+      "hash": "741a47d85031f3f86670319bbaaeda5aa34cf54dfcecc7df775ba483a1b5bb69",
+      "bytes": 6342,
+      "characters": 6342,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/engineering-knowledge-model.md",
+          "hash": "bb4681001cec3b2f103632f2ec735d8f5faf1cc93d6a4b0529dd555c07fbef99"
+        }
+      ],
+      "entities": [
+        "component:engineering-knowledge-store"
+      ],
+      "reason": "Reviewed serialized v2 upgrade, legacy compatibility, immutable archive, current-version no-op and future-version rejection.",
+      "symbols": [
+        {
+          "key": "code:tools/migrations.py#digest",
+          "symbol": "digest",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 14,
+              "end_line": 15,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/migrations.py#source_kind",
+          "symbol": "source_kind",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 18,
+              "end_line": 20,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/migrations.py#statements",
+          "symbol": "statements",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 23,
+              "end_line": 31,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/migrations.py#archive_result",
+          "symbol": "archive_result",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 34,
+              "end_line": 55,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/migrations.py#migrate",
+          "symbol": "migrate",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 58,
+              "end_line": 127,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "hashlib",
+          "name": "sha256",
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "contextlib",
+          "name": "closing",
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "time",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "uuid",
+          "name": "NAMESPACE_URL",
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "uuid",
+          "name": "uuid5",
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "engineering_graph",
+          "name": "insert_legacy_facts",
+          "alias": null,
+          "level": 0,
+          "line": 108,
+          "scope": "migrate"
+        },
+        {
+          "module": "engineering_graph",
+          "name": "index_graph",
+          "alias": null,
+          "level": 0,
+          "line": 108,
+          "scope": "migrate"
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.319757+00:00"
+    },
+    {
+      "path": "tools/paths.py",
+      "hash": "f1a6a16d018a256d88ba566c7ebf96a949ddbad2857b65d31558e18428d84f87",
+      "bytes": 469,
+      "characters": 469,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/engineering-knowledge-model.md",
+          "hash": "bb4681001cec3b2f103632f2ec735d8f5faf1cc93d6a4b0529dd555c07fbef99"
+        }
+      ],
+      "entities": [
+        "component:engineering-knowledge-store"
+      ],
+      "reason": "Reviewed tool-location project anchoring and local database/prompt/log paths.",
+      "symbols": [],
+      "imports": [
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.296534+00:00"
+    },
+    {
+      "path": "tools/queue_hook.py",
+      "hash": "df2af5c211f47790dec0a51b82a22df1e11ef8da5d3f6d180cf50cfc01919cb8",
+      "bytes": 3840,
+      "characters": 3840,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/wiki-maintenance.md",
+          "hash": "d6b2decb9056e6ef64372639e2d772909c8f80d93e301c1a5dcb8c24245f8e44"
+        }
+      ],
+      "entities": [
+        "feature:task-boundary-wiki-capture"
+      ],
+      "reason": "Reviewed readiness versus empty queue, continuation guards and capture despite errors.",
+      "symbols": [
+        {
+          "key": "code:tools/queue_hook.py#has_work",
+          "symbol": "has_work",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 12,
+              "end_line": 36,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/queue_hook.py#main",
+          "symbol": "main",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 39,
+              "end_line": 104,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "argparse",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "sys",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "time",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "DATABASE_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "NOTES_DIR",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "PROJECT_ROOT",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "EXTRACTION_PROMPT_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": "open_database",
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "source_sync",
+          "name": "synchronize_sources",
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.905652+00:00"
+    },
+    {
+      "path": "tools/queue_store.py",
+      "hash": "5b9c94fcb570a6b7953fad77400a4ac9b0fe3b7292bb0d22da36cfe801c1a0e8",
+      "bytes": 13326,
+      "characters": 13326,
+      "category": "source",
+      "chunks": 2,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/extraction-queue.md",
+          "hash": "79c329ef7179aa3323b9ba50edc78f84064762d8c0ff4b546aacea23dfe430b5"
+        }
+      ],
+      "entities": [
+        "component:extraction-queue"
+      ],
+      "reason": "Reviewed revisions, token/lease recovery/renewal, source races, immutable archive and atomic publication.",
+      "symbols": [
+        {
+          "key": "code:tools/queue_store.py#open_database",
+          "symbol": "open_database",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 19,
+              "end_line": 38,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/queue_store.py#enqueue",
+          "symbol": "enqueue",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 41,
+              "end_line": 76,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/queue_store.py#claim",
+          "symbol": "claim",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 79,
+              "end_line": 127,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/queue_store.py#acknowledge",
+          "symbol": "acknowledge",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 130,
+              "end_line": 262,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/queue_store.py#retry",
+          "symbol": "retry",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 265,
+              "end_line": 326,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/queue_store.py#renew",
+          "symbol": "renew",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 329,
+              "end_line": 360,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/queue_store.py#recover_expired",
+          "symbol": "recover_expired",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 363,
+              "end_line": 414,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "time",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "math",
+          "name": "isfinite",
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "uuid",
+          "name": "uuid4",
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "migrations",
+          "name": "archive_result",
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "migrations",
+          "name": "digest",
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "migrations",
+          "name": "migrate",
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "extraction.engineering",
+          "name": "relative_path",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "extraction.validate",
+          "name": "load_extraction",
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "DATABASE_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "NOTES_DIR",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "PROJECT_ROOT",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "SCHEMA_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "STATE_DIR",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "build_graph",
+          "name": "rebuild_graph",
+          "alias": null,
+          "level": 0,
+          "line": 242,
+          "scope": "acknowledge"
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.226920+00:00"
+    },
+    {
+      "path": "tools/recall_graph.py",
+      "hash": "e475a8ff8714fd245f652977c2c2dfb7f7c08d14a6cf760d53b9af91492dd09d",
+      "bytes": 18814,
+      "characters": 18814,
+      "category": "source",
+      "chunks": 2,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/graph-retrieval-comparison.md",
+          "hash": "dc1b612e16f49c59f07e2355d91bb765b57e64a20234f92643525d3a4bf86358"
+        }
+      ],
+      "entities": [
+        "feature:selective-graph-recall"
+      ],
+      "reason": "Reviewed exact/alias/code seeds, bounded BFS, auto/detail policy, references and read-only snapshot CLI.",
+      "symbols": [
+        {
+          "key": "code:tools/recall_graph.py#find_matches",
+          "symbol": "find_matches",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 17,
+              "end_line": 97,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_graph.py#find_edges",
+          "symbol": "find_edges",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 100,
+              "end_line": 204,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_graph.py#find_edges.rank",
+          "symbol": "find_edges.rank",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 182,
+              "end_line": 195,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_graph.py#load_nodes",
+          "symbol": "load_nodes",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 207,
+              "end_line": 255,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_graph.py#recall_graph",
+          "symbol": "recall_graph",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 258,
+              "end_line": 381,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_graph.py#attach_references",
+          "symbol": "attach_references",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 384,
+              "end_line": 415,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_graph.py#main",
+          "symbol": "main",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 418,
+              "end_line": 471,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "argparse",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "re",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "collections",
+          "name": "deque",
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "DATABASE_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "search_knowledge",
+          "name": "search_knowledge",
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "recall_selection",
+          "name": "analyze_query",
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "recall_selection",
+          "name": "GENERIC",
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "recall_selection",
+          "name": "select_facts",
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.413492+00:00"
+    },
+    {
+      "path": "tools/recall_hook.py",
+      "hash": "795ea5edb1eb981cfb49a0ff0ea704ea57a0873350a583dce799d49d6c371558",
+      "bytes": 14242,
+      "characters": 14240,
+      "category": "source",
+      "chunks": 2,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/graph-retrieval-comparison.md",
+          "hash": "dc1b612e16f49c59f07e2355d91bb765b57e64a20234f92643525d3a4bf86358"
+        }
+      ],
+      "entities": [
+        "feature:selective-graph-recall"
+      ],
+      "reason": "Reviewed client adapters, truthful receipts/source lines, read-only snapshots and concurrent diagnostic logging.",
+      "symbols": [
+        {
+          "key": "code:tools/recall_hook.py#citation",
+          "symbol": "citation",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 34,
+              "end_line": 57,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_hook.py#empty_delivery",
+          "symbol": "empty_delivery",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 60,
+              "end_line": 64,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_hook.py#format_recall",
+          "symbol": "format_recall",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 67,
+              "end_line": 168,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_hook.py#format_recall.render",
+          "symbol": "format_recall.render",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 96,
+              "end_line": 155,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_hook.py#format_context",
+          "symbol": "format_context",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 171,
+              "end_line": 172,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_hook.py#fallback_context",
+          "symbol": "fallback_context",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 175,
+              "end_line": 191,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_hook.py#retrieve_graph",
+          "symbol": "retrieve_graph",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 194,
+              "end_line": 216,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_hook.py#append_recall_log",
+          "symbol": "append_recall_log",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 219,
+              "end_line": 235,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_hook.py#main",
+          "symbol": "main",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 238,
+              "end_line": 337,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "argparse",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "os",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "re",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "sys",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "contextlib",
+          "name": "closing",
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "datetime",
+          "name": "datetime",
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "datetime",
+          "name": "timezone",
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "DATABASE_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "PROJECT_ROOT",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "RECALL_LOG_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "brief_context",
+          "name": "format_brief",
+          "alias": null,
+          "level": 0,
+          "line": 11,
+          "scope": ""
+        },
+        {
+          "module": "recall_graph",
+          "name": "DEFAULT_HOPS",
+          "alias": null,
+          "level": 0,
+          "line": 12,
+          "scope": ""
+        },
+        {
+          "module": "recall_graph",
+          "name": "DEFAULT_TRAVERSAL_LIMIT",
+          "alias": null,
+          "level": 0,
+          "line": 12,
+          "scope": ""
+        },
+        {
+          "module": "recall_graph",
+          "name": "recall_graph",
+          "alias": null,
+          "level": 0,
+          "line": 12,
+          "scope": ""
+        },
+        {
+          "module": "msvcrt",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 225,
+          "scope": "append_recall_log"
+        },
+        {
+          "module": "fcntl",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 230,
+          "scope": "append_recall_log"
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.503403+00:00"
+    },
+    {
+      "path": "tools/recall_selection.py",
+      "hash": "6772ae1d4374a0d1deb2ed062cadb2a17e091bf3be02d1a6f327b6508b10e5cc",
+      "bytes": 5480,
+      "characters": 5480,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/graph-retrieval-comparison.md",
+          "hash": "dc1b612e16f49c59f07e2355d91bb765b57e64a20234f92643525d3a4bf86358"
+        }
+      ],
+      "entities": [
+        "feature:selective-graph-recall"
+      ],
+      "reason": "Reviewed anchors, informative agreement, weak/stale abstention and compatible-state provenance-preserving dedup.",
+      "symbols": [
+        {
+          "key": "code:tools/recall_selection.py#normalized_word",
+          "symbol": "normalized_word",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 15,
+              "end_line": 22,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_selection.py#words",
+          "symbol": "words",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 25,
+              "end_line": 26,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_selection.py#analyze_query",
+          "symbol": "analyze_query",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 29,
+              "end_line": 33,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_selection.py#deduplicate",
+          "symbol": "deduplicate",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 36,
+              "end_line": 54,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/recall_selection.py#select_facts",
+          "symbol": "select_facts",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 57,
+              "end_line": 108,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "re",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "search_knowledge",
+          "name": "query_terms",
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.459453+00:00"
+    },
+    {
+      "path": "tools/run_hook.sh",
+      "hash": "0fe4a6a47625d9ed54e53cbbeb88066d852d757bcda0fb3ff07f1abd82668c70",
+      "bytes": 721,
+      "characters": 721,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/watcher-startup.md",
+          "hash": "0fe7077c7b624aa3b8bb6ac00bb5b8b513d8dc5114818a469aee163e8a49981c"
+        }
+      ],
+      "entities": [
+        "feature:shared-watcher-startup"
+      ],
+      "reason": "Reviewed own-path resolution, uv discovery and argument/stdin forwarding.",
+      "symbols": [],
+      "imports": [],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.811238+00:00"
+    },
+    {
+      "path": "tools/schema.sql",
+      "hash": "281e0bb8b771a3c8c4483033cd70b856178514990d2f77da51a63c0577477513",
+      "bytes": 4759,
+      "characters": 4759,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/engineering-knowledge-model.md",
+          "hash": "bb4681001cec3b2f103632f2ec735d8f5faf1cc93d6a4b0529dd555c07fbef99"
+        }
+      ],
+      "entities": [
+        "component:engineering-knowledge-store"
+      ],
+      "reason": "Reviewed queue, accepted/archive/source/key/fact/evidence/edge/supersession/FTS storage and integrity constraints.",
+      "symbols": [],
+      "imports": [],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.389953+00:00"
+    },
+    {
+      "path": "tools/search_knowledge.py",
+      "hash": "11b7e2e983cf837493e1817ea0eb2ea7f3d7c8349056e34ce56703bcc22fcd01",
+      "bytes": 5869,
+      "characters": 5869,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/graph-retrieval-comparison.md",
+          "hash": "dc1b612e16f49c59f07e2355d91bb765b57e64a20234f92643525d3a4bf86358"
+        }
+      ],
+      "entities": [
+        "feature:selective-graph-recall"
+      ],
+      "reason": "Reviewed bounded lexical candidates, active/state/history eligibility and fixed same-page state collapse.",
+      "symbols": [
+        {
+          "key": "code:tools/search_knowledge.py#has_table",
+          "symbol": "has_table",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 12,
+              "end_line": 13,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/search_knowledge.py#query_terms",
+          "symbol": "query_terms",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 16,
+              "end_line": 18,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/search_knowledge.py#search_knowledge",
+          "symbol": "search_knowledge",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 21,
+              "end_line": 116,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "re",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.437021+00:00"
+    },
+    {
+      "path": "tools/source_coverage.py",
+      "hash": "abccbaa804f556274367f0025b78a5764ebaa328f64bfec31d29a76fdd44866b",
+      "bytes": 13872,
+      "characters": 13872,
+      "category": "source",
+      "chunks": 2,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/codebase-bootstrap.md",
+          "hash": "7e68778e2a82e020f4e16bd0d537d93e0c258c5ed31530ec20bf1310cfc4e4e9"
+        }
+      ],
+      "entities": [
+        "feature:source-review-coverage"
+      ],
+      "reason": "Implemented and reviewed non-executing AST inventory, review evidence/drift and source-specific publication checks.",
+      "symbols": [
+        {
+          "key": "code:tools/source_coverage.py#ledger_path",
+          "symbol": "ledger_path",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 16,
+              "end_line": 17,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#write_json",
+          "symbol": "write_json",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 20,
+              "end_line": 32,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#symbols",
+          "symbol": "symbols",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 35,
+              "end_line": 72,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#symbols.Visitor",
+          "symbol": "symbols.Visitor",
+          "kind": "class",
+          "definitions": [
+            {
+              "line": 40,
+              "end_line": 69,
+              "kind": "class"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#symbols.Visitor.definition",
+          "symbol": "symbols.Visitor.definition",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 41,
+              "end_line": 50,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#symbols.Visitor.visit_ClassDef",
+          "symbol": "symbols.Visitor.visit_ClassDef",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 52,
+              "end_line": 53,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#symbols.Visitor.visit_FunctionDef",
+          "symbol": "symbols.Visitor.visit_FunctionDef",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 55,
+              "end_line": 56,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#symbols.Visitor.visit_AsyncFunctionDef",
+          "symbol": "symbols.Visitor.visit_AsyncFunctionDef",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 58,
+              "end_line": 59,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#symbols.Visitor.visit_Import",
+          "symbol": "symbols.Visitor.visit_Import",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 61,
+              "end_line": 64,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#symbols.Visitor.visit_ImportFrom",
+          "symbol": "symbols.Visitor.visit_ImportFrom",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 66,
+              "end_line": 69,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#current_bootstrap",
+          "symbol": "current_bootstrap",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 75,
+              "end_line": 81,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#load_ledger",
+          "symbol": "load_ledger",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 84,
+              "end_line": 88,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#initialize",
+          "symbol": "initialize",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 91,
+              "end_line": 126,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#topic_path",
+          "symbol": "topic_path",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 129,
+              "end_line": 134,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#linked_sources",
+          "symbol": "linked_sources",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 137,
+              "end_line": 147,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#record",
+          "symbol": "record",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 150,
+              "end_line": 186,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#verify",
+          "symbol": "verify",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 189,
+              "end_line": 239,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/source_coverage.py#main",
+          "symbol": "main",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 242,
+              "end_line": 276,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "argparse",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "ast",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "contextlib",
+          "name": "closing",
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "re",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "bootstrap_knowledge",
+          "name": null,
+          "alias": "bootstrap",
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "watcher_lock",
+          "name": "file_lock",
+          "alias": null,
+          "level": 0,
+          "line": 11,
+          "scope": ""
+        },
+        {
+          "module": "os",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 22,
+          "scope": "write_json"
+        },
+        {
+          "module": "tempfile",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 23,
+          "scope": "write_json"
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.067689+00:00"
+    },
+    {
+      "path": "tools/source_sync.py",
+      "hash": "946bae21345f7d6872f3bff7eb526f1a72a164fa724b8e5c2e4dc4110f7032da",
+      "bytes": 3048,
+      "characters": 3048,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/wiki-maintenance.md",
+          "hash": "d6b2decb9056e6ef64372639e2d772909c8f80d93e301c1a5dcb8c24245f8e44"
+        }
+      ],
+      "entities": [
+        "feature:task-boundary-wiki-capture"
+      ],
+      "reason": "Reviewed transactional source/prompt hashes, navigation filtering and deletion handling.",
+      "symbols": [
+        {
+          "key": "code:tools/source_sync.py#synchronize_sources",
+          "symbol": "synchronize_sources",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 9,
+              "end_line": 61,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "time",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "migrations",
+          "name": "digest",
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "migrations",
+          "name": "source_kind",
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "extraction.engineering",
+          "name": "SCHEMA_VERSION",
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": "enqueue",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": "synchronize_sources"
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.930190+00:00"
+    },
+    {
+      "path": "tools/tests/test_bootstrap_knowledge.py",
+      "hash": "03b3ab9b081ce7dd4ec82cc4facb86685613e626a7d4756a45543b99a6f9d00c",
+      "bytes": 14049,
+      "characters": 14049,
+      "category": "test",
+      "chunks": 2,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/codebase-bootstrap.md",
+          "hash": "7e68778e2a82e020f4e16bd0d537d93e0c258c5ed31530ec20bf1310cfc4e4e9"
+        }
+      ],
+      "entities": [
+        "feature:existing-codebase-bootstrap"
+      ],
+      "reason": "Reviewed exclusions, CRLF/chunks, drift/gaps, source links and bootstrap-to-normal-change integration.",
+      "symbols": [
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapTests",
+          "symbol": "BootstrapTests",
+          "kind": "class",
+          "definitions": [
+            {
+              "line": 20,
+              "end_line": 171,
+              "kind": "class"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapTests.setUp",
+          "symbol": "BootstrapTests.setUp",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 21,
+              "end_line": 40,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapTests.start",
+          "symbol": "BootstrapTests.start",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 42,
+              "end_line": 43,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapTests.read_all",
+          "symbol": "BootstrapTests.read_all",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 45,
+              "end_line": 49,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapTests.note",
+          "symbol": "BootstrapTests.note",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 51,
+              "end_line": 57,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapTests.publish",
+          "symbol": "BootstrapTests.publish",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 59,
+              "end_line": 75,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapTests.test_git_ignore_defaults_binary_and_symlink_scope",
+          "symbol": "BootstrapTests.test_git_ignore_defaults_binary_and_symlink_scope",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 77,
+              "end_line": 91,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapTests.test_chunk_resume_and_crlf_source_are_exact",
+          "symbol": "BootstrapTests.test_chunk_resume_and_crlf_source_are_exact",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 93,
+              "end_line": 102,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapTests.test_changed_or_new_sources_require_refresh_and_keep_other_progress",
+          "symbol": "BootstrapTests.test_changed_or_new_sources_require_refresh_and_keep_other_progress",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 104,
+              "end_line": 119,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapTests.test_incomplete_coverage_cannot_be_published_as_complete",
+          "symbol": "BootstrapTests.test_incomplete_coverage_cannot_be_published_as_complete",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 121,
+              "end_line": 134,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapTests.test_finish_requires_source_linked_architecture_and_is_idempotent",
+          "symbol": "BootstrapTests.test_finish_requires_source_linked_architecture_and_is_idempotent",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 136,
+              "end_line": 154,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapTests.test_angle_bracket_source_links_support_route_groups_and_line_numbers",
+          "symbol": "BootstrapTests.test_angle_bracket_source_links_support_route_groups_and_line_numbers",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 156,
+              "end_line": 165,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapTests.test_empty_recall_points_to_onboarding_without_bootstrapping_every_miss",
+          "symbol": "BootstrapTests.test_empty_recall_points_to_onboarding_without_bootstrapping_every_miss",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 167,
+              "end_line": 171,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapFlowTests",
+          "symbol": "BootstrapFlowTests",
+          "kind": "class",
+          "definitions": [
+            {
+              "line": 174,
+              "end_line": 250,
+              "kind": "class"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapFlowTests.test_real_cli_bootstrap_then_normal_capture_preserves_baseline_and_existing_knowledge",
+          "symbol": "BootstrapFlowTests.test_real_cli_bootstrap_then_normal_capture_preserves_baseline_and_existing_knowledge",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 175,
+              "end_line": 250,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapFlowTests.test_real_cli_bootstrap_then_normal_capture_preserves_baseline_and_existing_knowledge.run",
+          "symbol": "BootstrapFlowTests.test_real_cli_bootstrap_then_normal_capture_preserves_baseline_and_existing_knowledge.run",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 186,
+              "end_line": 190,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapFlowTests.test_real_cli_bootstrap_then_normal_capture_preserves_baseline_and_existing_knowledge.write_note",
+          "symbol": "BootstrapFlowTests.test_real_cli_bootstrap_then_normal_capture_preserves_baseline_and_existing_knowledge.write_note",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 192,
+              "end_line": 193,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_bootstrap_knowledge.py#BootstrapFlowTests.test_real_cli_bootstrap_then_normal_capture_preserves_baseline_and_existing_knowledge.extract",
+          "symbol": "BootstrapFlowTests.test_real_cli_bootstrap_then_normal_capture_preserves_baseline_and_existing_knowledge.extract",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 195,
+              "end_line": 209,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "contextlib",
+          "name": "closing",
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "shutil",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "subprocess",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "sys",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "tempfile",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": "mock",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "bootstrap_knowledge",
+          "name": null,
+          "alias": "bootstrap",
+          "level": 0,
+          "line": 14,
+          "scope": ""
+        },
+        {
+          "module": "build_graph",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 15,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 16,
+          "scope": ""
+        },
+        {
+          "module": "recall_hook",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 17,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.045209+00:00"
+    },
+    {
+      "path": "tools/tests/test_engineering_knowledge.py",
+      "hash": "f86dffd9f8318e17de50db04ec74bff41897049310bf9088fb12a51fb5ce71ca",
+      "bytes": 18549,
+      "characters": 18549,
+      "category": "test",
+      "chunks": 2,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/extraction-contract.md",
+          "hash": "a87ed8af313ec2847fc908226fdf32c760136c0858340a8ace3482ed0d788729"
+        }
+      ],
+      "entities": [
+        "feature:engineering-knowledge-extraction"
+      ],
+      "reason": "Reviewed evidence/roles, original question, stale/deleted/history/supersession, migration and rollback tests.",
+      "symbols": [
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#document",
+          "symbol": "document",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 29,
+              "end_line": 46,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests",
+          "symbol": "EngineeringKnowledgeTests",
+          "kind": "class",
+          "definitions": [
+            {
+              "line": 49,
+              "end_line": 322,
+              "kind": "class"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.setUp",
+          "symbol": "EngineeringKnowledgeTests.setUp",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 50,
+              "end_line": 66,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.sync",
+          "symbol": "EngineeringKnowledgeTests.sync",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 68,
+              "end_line": 69,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.candidate",
+          "symbol": "EngineeringKnowledgeTests.candidate",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 71,
+              "end_line": 75,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.publish",
+          "symbol": "EngineeringKnowledgeTests.publish",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 77,
+              "end_line": 85,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.recall",
+          "symbol": "EngineeringKnowledgeTests.recall",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 87,
+              "end_line": 92,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.test_original_question_retrieves_fact_without_exact_entity_name",
+          "symbol": "EngineeringKnowledgeTests.test_original_question_retrieves_fact_without_exact_entity_name",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 94,
+              "end_line": 107,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.test_client_hooks_receive_fact_or_explicit_miss_status",
+          "symbol": "EngineeringKnowledgeTests.test_client_hooks_receive_fact_or_explicit_miss_status",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 109,
+              "end_line": 126,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.test_hash_reconciliation_is_idempotent_and_skips_index_log",
+          "symbol": "EngineeringKnowledgeTests.test_hash_reconciliation_is_idempotent_and_skips_index_log",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 128,
+              "end_line": 139,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.test_unobserved_edit_cannot_publish_stale_claim",
+          "symbol": "EngineeringKnowledgeTests.test_unobserved_edit_cannot_publish_stale_claim",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 141,
+              "end_line": 149,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.test_source_snapshot_preserves_history_and_evidence_after_edit",
+          "symbol": "EngineeringKnowledgeTests.test_source_snapshot_preserves_history_and_evidence_after_edit",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 151,
+              "end_line": 167,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.test_deleted_source_is_hidden_but_other_support_survives",
+          "symbol": "EngineeringKnowledgeTests.test_deleted_source_is_hidden_but_other_support_survives",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 169,
+              "end_line": 179,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.test_same_named_symbols_keep_distinct_canonical_identity",
+          "symbol": "EngineeringKnowledgeTests.test_same_named_symbols_keep_distinct_canonical_identity",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 181,
+              "end_line": 191,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.test_superseded_facts_do_not_return_through_exact_seeds_or_passages",
+          "symbol": "EngineeringKnowledgeTests.test_superseded_facts_do_not_return_through_exact_seeds_or_passages",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 193,
+              "end_line": 205,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.test_attribution_roles_are_supported_and_not_inferred_from_git_authorship",
+          "symbol": "EngineeringKnowledgeTests.test_attribution_roles_are_supported_and_not_inferred_from_git_authorship",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 207,
+              "end_line": 231,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.test_decision_maker_and_maintainer_remain_separate",
+          "symbol": "EngineeringKnowledgeTests.test_decision_maker_and_maintainer_remain_separate",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 233,
+              "end_line": 256,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.test_invalid_evidence_and_endpoint_contracts_are_rejected",
+          "symbol": "EngineeringKnowledgeTests.test_invalid_evidence_and_endpoint_contracts_are_rejected",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 258,
+              "end_line": 266,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.test_query_syntax_is_data_and_unrelated_questions_miss",
+          "symbol": "EngineeringKnowledgeTests.test_query_syntax_is_data_and_unrelated_questions_miss",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 268,
+              "end_line": 273,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.test_failed_v2_graph_publication_rolls_back_archive_and_search",
+          "symbol": "EngineeringKnowledgeTests.test_failed_v2_graph_publication_rolls_back_archive_and_search",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 275,
+              "end_line": 285,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_engineering_knowledge.py#EngineeringKnowledgeTests.test_v1_database_migration_backs_up_and_preserves_claims_and_knowledge",
+          "symbol": "EngineeringKnowledgeTests.test_v1_database_migration_backs_up_and_preserves_claims_and_knowledge",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 287,
+              "end_line": 322,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "copy",
+          "name": "deepcopy",
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "contextlib",
+          "name": "closing",
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "contextlib",
+          "name": "redirect_stdout",
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "io",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "sys",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "tempfile",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": "mock",
+          "alias": null,
+          "level": 0,
+          "line": 11,
+          "scope": ""
+        },
+        {
+          "module": "build_graph",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 15,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 16,
+          "scope": ""
+        },
+        {
+          "module": "recall_graph",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 17,
+          "scope": ""
+        },
+        {
+          "module": "recall_hook",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 18,
+          "scope": ""
+        },
+        {
+          "module": "extraction.validate",
+          "name": "validate_extraction",
+          "alias": null,
+          "level": 0,
+          "line": 19,
+          "scope": ""
+        },
+        {
+          "module": "migrations",
+          "name": "digest",
+          "alias": null,
+          "level": 0,
+          "line": 20,
+          "scope": ""
+        },
+        {
+          "module": "source_sync",
+          "name": "synchronize_sources",
+          "alias": null,
+          "level": 0,
+          "line": 21,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.204969+00:00"
+    },
+    {
+      "path": "tools/tests/test_graph_recall.py",
+      "hash": "f9f78e09a698496903adeab20aed557b01d796a267e7733b99d40f1af26b7190",
+      "bytes": 12464,
+      "characters": 12461,
+      "category": "test",
+      "chunks": 2,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/graph-retrieval-comparison.md",
+          "hash": "dc1b612e16f49c59f07e2355d91bb765b57e64a20234f92643525d3a4bf86358"
+        }
+      ],
+      "entities": [
+        "feature:selective-graph-recall"
+      ],
+      "reason": "Reviewed Unicode/literal seed matching, traversal budgets/cycles and snapshot/read-only tests.",
+      "symbols": [
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests",
+          "symbol": "GraphRecallTests",
+          "kind": "class",
+          "definitions": [
+            {
+              "line": 19,
+              "end_line": 283,
+              "kind": "class"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.setUp",
+          "symbol": "GraphRecallTests.setUp",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 20,
+              "end_line": 32,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.node",
+          "symbol": "GraphRecallTests.node",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 34,
+              "end_line": 44,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.alias",
+          "symbol": "GraphRecallTests.alias",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 46,
+              "end_line": 50,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.edge",
+          "symbol": "GraphRecallTests.edge",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 52,
+              "end_line": 56,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_aliases_are_case_insensitive_deduplicated_and_prefer_longest_match",
+          "symbol": "GraphRecallTests.test_aliases_are_case_insensitive_deduplicated_and_prefer_longest_match",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 58,
+              "end_line": 67,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_literal_labels_word_boundaries_and_no_match",
+          "symbol": "GraphRecallTests.test_literal_labels_word_boundaries_and_no_match",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 69,
+              "end_line": 91,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_sql_filter_preserves_unicode_matching",
+          "symbol": "GraphRecallTests.test_sql_filter_preserves_unicode_matching",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 93,
+              "end_line": 99,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_sql_filter_does_not_materialize_unrelated_nodes",
+          "symbol": "GraphRecallTests.test_sql_filter_does_not_materialize_unrelated_nodes",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 101,
+              "end_line": 122,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_sql_filter_does_not_materialize_unrelated_nodes.record_row",
+          "symbol": "GraphRecallTests.test_sql_filter_does_not_materialize_unrelated_nodes.record_row",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 110,
+              "end_line": 113,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_incoming_and_outgoing_edges_keep_source_descriptions",
+          "symbol": "GraphRecallTests.test_incoming_and_outgoing_edges_keep_source_descriptions",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 124,
+              "end_line": 151,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_limits_report_truncation_and_relevant_neighbors_rank_first",
+          "symbol": "GraphRecallTests.test_limits_report_truncation_and_relevant_neighbors_rank_first",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 153,
+              "end_line": 173,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_configurable_hops_follow_chain_and_zero_keeps_only_seed",
+          "symbol": "GraphRecallTests.test_configurable_hops_follow_chain_and_zero_keeps_only_seed",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 175,
+              "end_line": 197,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_cycles_stop_and_traversal_budget_caps_examined_rows",
+          "symbol": "GraphRecallTests.test_cycles_stop_and_traversal_budget_caps_examined_rows",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 199,
+              "end_line": 217,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_invalid_traversal_options_are_rejected",
+          "symbol": "GraphRecallTests.test_invalid_traversal_options_are_rejected",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 219,
+              "end_line": 230,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_cli_connection_is_read_only",
+          "symbol": "GraphRecallTests.test_cli_connection_is_read_only",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 232,
+              "end_line": 242,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_cli_connection_is_read_only.attempt_write",
+          "symbol": "GraphRecallTests.test_cli_connection_is_read_only.attempt_write",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 235,
+              "end_line": 236,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_missing_database_reports_error_without_creating_it",
+          "symbol": "GraphRecallTests.test_missing_database_reports_error_without_creating_it",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 244,
+              "end_line": 254,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_cli_uses_one_snapshot_during_concurrent_graph_changes",
+          "symbol": "GraphRecallTests.test_cli_uses_one_snapshot_during_concurrent_graph_changes",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 256,
+              "end_line": 283,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_graph_recall.py#GraphRecallTests.test_cli_uses_one_snapshot_during_concurrent_graph_changes.change_graph",
+          "symbol": "GraphRecallTests.test_cli_uses_one_snapshot_during_concurrent_graph_changes.change_graph",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 261,
+              "end_line": 266,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "contextlib",
+          "name": "redirect_stderr",
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "contextlib",
+          "name": "redirect_stdout",
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "io",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "sys",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "tempfile",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": "mock",
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "recall_graph",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 15,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "SCHEMA_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 16,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.526065+00:00"
+    },
+    {
+      "path": "tools/tests/test_queue_completion.py",
+      "hash": "5f85f90d160ed3f22d00b6df3c32a34fc3978643670c4d951888e11817308640",
+      "bytes": 14621,
+      "characters": 14621,
+      "category": "test",
+      "chunks": 2,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/extraction-queue.md",
+          "hash": "79c329ef7179aa3323b9ba50edc78f84064762d8c0ff4b546aacea23dfe430b5"
+        }
+      ],
+      "entities": [
+        "component:extraction-queue"
+      ],
+      "reason": "Reviewed concurrent ack/jobs, invalid tokens/candidates, expiry and rollback at publication stages.",
+      "symbols": [
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests",
+          "symbol": "QueueCompletionTests",
+          "kind": "class",
+          "definitions": [
+            {
+              "line": 21,
+              "end_line": 370,
+              "kind": "class"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.setUp",
+          "symbol": "QueueCompletionTests.setUp",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 22,
+              "end_line": 40,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.claim",
+          "symbol": "QueueCompletionTests.claim",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 42,
+              "end_line": 44,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.candidate_path",
+          "symbol": "QueueCompletionTests.candidate_path",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 46,
+              "end_line": 53,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.write_candidate",
+          "symbol": "QueueCompletionTests.write_candidate",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 55,
+              "end_line": 66,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.acknowledge",
+          "symbol": "QueueCompletionTests.acknowledge",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 68,
+              "end_line": 71,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.stored_job",
+          "symbol": "QueueCompletionTests.stored_job",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 73,
+              "end_line": 74,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.results",
+          "symbol": "QueueCompletionTests.results",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 76,
+              "end_line": 80,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_success_registers_result_and_replaces_it_on_next_revision",
+          "symbol": "QueueCompletionTests.test_success_registers_result_and_replaces_it_on_next_revision",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 82,
+              "end_line": 108,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_invalid_candidates_leave_the_job_claimed_without_accepting_results",
+          "symbol": "QueueCompletionTests.test_invalid_candidates_leave_the_job_claimed_without_accepting_results",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 110,
+              "end_line": 137,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_missing_candidate_leaves_the_job_claimed",
+          "symbol": "QueueCompletionTests.test_missing_candidate_leaves_the_job_claimed",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 139,
+              "end_line": 146,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_changed_revision_returns_to_pending_and_preserves_previous_result",
+          "symbol": "QueueCompletionTests.test_changed_revision_returns_to_pending_and_preserves_previous_result",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 148,
+              "end_line": 162,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_wrong_token_and_expired_lease_are_rejected_before_reading_json",
+          "symbol": "QueueCompletionTests.test_wrong_token_and_expired_lease_are_rejected_before_reading_json",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 164,
+              "end_line": 175,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_lease_expiring_during_validation_cannot_publish_a_result",
+          "symbol": "QueueCompletionTests.test_lease_expiring_during_validation_cannot_publish_a_result",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 177,
+              "end_line": 188,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_registration_failure_rolls_back_completion_and_keeps_previous_result",
+          "symbol": "QueueCompletionTests.test_registration_failure_rolls_back_completion_and_keeps_previous_result",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 190,
+              "end_line": 211,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_concurrent_acknowledgments_accept_one_result",
+          "symbol": "QueueCompletionTests.test_concurrent_acknowledgments_accept_one_result",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 213,
+              "end_line": 231,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_concurrent_acknowledgments_accept_one_result.acknowledge_once",
+          "symbol": "QueueCompletionTests.test_concurrent_acknowledgments_accept_one_result.acknowledge_once",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 217,
+              "end_line": 224,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_successful_acknowledgment_builds_and_replaces_graph",
+          "symbol": "QueueCompletionTests.test_successful_acknowledgment_builds_and_replaces_graph",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 233,
+              "end_line": 265,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_graph_failure_rolls_back_acknowledgment_and_previous_graph",
+          "symbol": "QueueCompletionTests.test_graph_failure_rolls_back_acknowledgment_and_previous_graph",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 267,
+              "end_line": 299,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_lease_expiring_during_graph_rebuild_rolls_back_all_changes",
+          "symbol": "QueueCompletionTests.test_lease_expiring_during_graph_rebuild_rolls_back_all_changes",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 301,
+              "end_line": 323,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_concurrent_jobs_both_contribute_to_graph",
+          "symbol": "QueueCompletionTests.test_concurrent_jobs_both_contribute_to_graph",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 325,
+              "end_line": 354,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_concurrent_jobs_both_contribute_to_graph.acknowledge_job",
+          "symbol": "QueueCompletionTests.test_concurrent_jobs_both_contribute_to_graph.acknowledge_job",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 337,
+              "end_line": 342,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_completion.py#QueueCompletionTests.test_cli_reports_missing_candidate_without_a_traceback",
+          "symbol": "QueueCompletionTests.test_cli_reports_missing_candidate_without_a_traceback",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 356,
+              "end_line": 370,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "concurrent.futures",
+          "name": "ThreadPoolExecutor",
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "contextlib",
+          "name": "redirect_stderr",
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "io",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "sys",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "tempfile",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": "mock",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "consume_queue",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 16,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 17,
+          "scope": ""
+        },
+        {
+          "module": "build_graph",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 18,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.273584+00:00"
+    },
+    {
+      "path": "tools/tests/test_queue_hook.py",
+      "hash": "985fb05361076b804127296b8a2c00ce60cde90d6d0f018911ac6d5929ac87d1",
+      "bytes": 9963,
+      "characters": 9963,
+      "category": "test",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/wiki-maintenance.md",
+          "hash": "d6b2decb9056e6ef64372639e2d772909c8f80d93e301c1a5dcb8c24245f8e44"
+        }
+      ],
+      "entities": [
+        "feature:task-boundary-wiki-capture"
+      ],
+      "reason": "Reviewed guarded/no-work/error adapters and real relocated capture-to-recall flow.",
+      "symbols": [
+        {
+          "key": "code:tools/tests/test_queue_hook.py#StopCaptureTests",
+          "symbol": "StopCaptureTests",
+          "kind": "class",
+          "definitions": [
+            {
+              "line": 21,
+              "end_line": 128,
+              "kind": "class"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_hook.py#StopCaptureTests.setUp",
+          "symbol": "StopCaptureTests.setUp",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 22,
+              "end_line": 37,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_hook.py#StopCaptureTests.invoke",
+          "symbol": "StopCaptureTests.invoke",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 39,
+              "end_line": 46,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_hook.py#StopCaptureTests.message",
+          "symbol": "StopCaptureTests.message",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 48,
+              "end_line": 52,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_hook.py#StopCaptureTests.test_all_clients_request_capture_with_an_empty_queue",
+          "symbol": "StopCaptureTests.test_all_clients_request_capture_with_an_empty_queue",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 54,
+              "end_line": 66,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_hook.py#StopCaptureTests.test_delayed_jobs_are_not_misreported_as_an_empty_queue",
+          "symbol": "StopCaptureTests.test_delayed_jobs_are_not_misreported_as_an_empty_queue",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 68,
+              "end_line": 78,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_hook.py#StopCaptureTests.test_pending_notes_request_capture_before_extraction",
+          "symbol": "StopCaptureTests.test_pending_notes_request_capture_before_extraction",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 80,
+              "end_line": 93,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_hook.py#StopCaptureTests.test_continuation_guards_have_no_filesystem_or_queue_side_effects",
+          "symbol": "StopCaptureTests.test_continuation_guards_have_no_filesystem_or_queue_side_effects",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 95,
+              "end_line": 112,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_hook.py#StopCaptureTests.test_queue_failure_still_requests_capture_and_reports_the_error",
+          "symbol": "StopCaptureTests.test_queue_failure_still_requests_capture_and_reports_the_error",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 114,
+              "end_line": 121,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_hook.py#StopCaptureTests.test_log_failure_does_not_suppress_capture_review",
+          "symbol": "StopCaptureTests.test_log_failure_does_not_suppress_capture_review",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 123,
+              "end_line": 128,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_hook.py#CaptureFlowTests",
+          "symbol": "CaptureFlowTests",
+          "kind": "class",
+          "definitions": [
+            {
+              "line": 131,
+              "end_line": 187,
+              "kind": "class"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_hook.py#CaptureFlowTests.test_empty_stop_saved_note_claim_acknowledge_and_prompt_recall",
+          "symbol": "CaptureFlowTests.test_empty_stop_saved_note_claim_acknowledge_and_prompt_recall",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 132,
+              "end_line": 187,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_queue_hook.py#CaptureFlowTests.test_empty_stop_saved_note_claim_acknowledge_and_prompt_recall.run",
+          "symbol": "CaptureFlowTests.test_empty_stop_saved_note_claim_acknowledge_and_prompt_recall.run",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 140,
+              "end_line": 147,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "contextlib",
+          "name": "closing",
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "contextlib",
+          "name": "redirect_stderr",
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "contextlib",
+          "name": "redirect_stdout",
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "io",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "shutil",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "subprocess",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "sys",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "tempfile",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 11,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": "mock",
+          "alias": null,
+          "level": 0,
+          "line": 12,
+          "scope": ""
+        },
+        {
+          "module": "queue_hook",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 17,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 18,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.955584+00:00"
+    },
+    {
+      "path": "tools/tests/test_recall_hook.py",
+      "hash": "b98d6df7099b2342a9b578b16457593889bf6bf859c17def5709dd1f26755615",
+      "bytes": 19909,
+      "characters": 19890,
+      "category": "test",
+      "chunks": 2,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/graph-retrieval-comparison.md",
+          "hash": "dc1b612e16f49c59f07e2355d91bb765b57e64a20234f92643525d3a4bf86358"
+        }
+      ],
+      "entities": [
+        "feature:selective-graph-recall"
+      ],
+      "reason": "Reviewed adapters, metadata/concurrent logs, budgets, source-safe citations and delivered counts.",
+      "symbols": [
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests",
+          "symbol": "RecallHookTests",
+          "kind": "class",
+          "definitions": [
+            {
+              "line": 22,
+              "end_line": 298,
+              "kind": "class"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.setUp",
+          "symbol": "RecallHookTests.setUp",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 23,
+              "end_line": 56,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.records",
+          "symbol": "RecallHookTests.records",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 58,
+              "end_line": 59,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.invoke",
+          "symbol": "RecallHookTests.invoke",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 61,
+              "end_line": 71,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.context",
+          "symbol": "RecallHookTests.context",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 73,
+              "end_line": 78,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.assert_allowed_without_context",
+          "symbol": "RecallHookTests.assert_allowed_without_context",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 80,
+              "end_line": 86,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.test_clients_receive_two_hop_facts_types_and_sources",
+          "symbol": "RecallHookTests.test_clients_receive_two_hop_facts_types_and_sources",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 88,
+              "end_line": 118,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.test_unmatched_and_empty_prompts_allow_submission",
+          "symbol": "RecallHookTests.test_unmatched_and_empty_prompts_allow_submission",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 120,
+              "end_line": 130,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.test_missing_database_is_not_created",
+          "symbol": "RecallHookTests.test_missing_database_is_not_created",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 132,
+              "end_line": 142,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.test_database_errors_allow_submission_and_report_to_stderr",
+          "symbol": "RecallHookTests.test_database_errors_allow_submission_and_report_to_stderr",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 144,
+              "end_line": 156,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.test_malformed_events_allow_submission_and_report_to_stderr",
+          "symbol": "RecallHookTests.test_malformed_events_allow_submission_and_report_to_stderr",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 158,
+              "end_line": 166,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.test_hook_database_connection_rejects_writes",
+          "symbol": "RecallHookTests.test_hook_database_connection_rejects_writes",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 168,
+              "end_line": 177,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.test_hook_database_connection_rejects_writes.attempt_write",
+          "symbol": "RecallHookTests.test_hook_database_connection_rejects_writes.attempt_write",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 169,
+              "end_line": 170,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.test_hook_keeps_one_snapshot_during_graph_updates",
+          "symbol": "RecallHookTests.test_hook_keeps_one_snapshot_during_graph_updates",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 179,
+              "end_line": 200,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.test_hook_keeps_one_snapshot_during_graph_updates.change_graph",
+          "symbol": "RecallHookTests.test_hook_keeps_one_snapshot_during_graph_updates.change_graph",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 182,
+              "end_line": 186,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.test_log_preserves_prompt_and_session_metadata_without_extra_lines",
+          "symbol": "RecallHookTests.test_log_preserves_prompt_and_session_metadata_without_extra_lines",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 202,
+              "end_line": 218,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.test_log_failure_preserves_hook_context_and_reports_to_stderr",
+          "symbol": "RecallHookTests.test_log_failure_preserves_hook_context_and_reports_to_stderr",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 220,
+              "end_line": 226,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.test_concurrent_processes_append_complete_records",
+          "symbol": "RecallHookTests.test_concurrent_processes_append_complete_records",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 228,
+              "end_line": 264,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.test_hop_and_traversal_options_control_context",
+          "symbol": "RecallHookTests.test_hop_and_traversal_options_control_context",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 266,
+              "end_line": 283,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallHookTests.test_long_context_stays_within_limit_and_marks_omission",
+          "symbol": "RecallHookTests.test_long_context_stays_within_limit_and_marks_omission",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 285,
+              "end_line": 298,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallDeliveryTests",
+          "symbol": "RecallDeliveryTests",
+          "kind": "class",
+          "definitions": [
+            {
+              "line": 301,
+              "end_line": 400,
+              "kind": "class"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallDeliveryTests.setUp",
+          "symbol": "RecallDeliveryTests.setUp",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 302,
+              "end_line": 313,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallDeliveryTests.fact",
+          "symbol": "RecallDeliveryTests.fact",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 315,
+              "end_line": 318,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallDeliveryTests.result",
+          "symbol": "RecallDeliveryTests.result",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 320,
+              "end_line": 323,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallDeliveryTests.test_counts_distinct_pages_and_links_exact_source_sections",
+          "symbol": "RecallDeliveryTests.test_counts_distinct_pages_and_links_exact_source_sections",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 325,
+              "end_line": 341,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallDeliveryTests.test_oversized_facts_are_not_counted_or_cut_into_incomplete_claims",
+          "symbol": "RecallDeliveryTests.test_oversized_facts_are_not_counted_or_cut_into_incomplete_claims",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 343,
+              "end_line": 358,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallDeliveryTests.test_upstream_partial_flag_is_separate_from_context_omission",
+          "symbol": "RecallDeliveryTests.test_upstream_partial_flag_is_separate_from_context_omission",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 360,
+              "end_line": 367,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallDeliveryTests.test_full_text_passages_are_counted_as_excerpts_rather_than_facts",
+          "symbol": "RecallDeliveryTests.test_full_text_passages_are_counted_as_excerpts_rather_than_facts",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 369,
+              "end_line": 382,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallDeliveryTests.test_misses_supply_no_evidence_or_graph_use_claim",
+          "symbol": "RecallDeliveryTests.test_misses_supply_no_evidence_or_graph_use_claim",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 384,
+              "end_line": 391,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_recall_hook.py#RecallDeliveryTests.test_source_links_do_not_invent_heading_lines_or_read_outside_project",
+          "symbol": "RecallDeliveryTests.test_source_links_do_not_invent_heading_lines_or_read_outside_project",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 393,
+              "end_line": 400,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "contextlib",
+          "name": "redirect_stderr",
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "contextlib",
+          "name": "redirect_stdout",
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "io",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "re",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "subprocess",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "sys",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "tempfile",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": "mock",
+          "alias": null,
+          "level": 0,
+          "line": 11,
+          "scope": ""
+        },
+        {
+          "module": "recall_graph",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 17,
+          "scope": ""
+        },
+        {
+          "module": "recall_hook",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 18,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "SCHEMA_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 19,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.549242+00:00"
+    },
+    {
+      "path": "tools/tests/test_selective_recall.py",
+      "hash": "1551596664171c0413cef3e2576abecd71deb86cedcfab4daeaa09035f8a9ffd",
+      "bytes": 12909,
+      "characters": 12909,
+      "category": "test",
+      "chunks": 2,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/graph-retrieval-comparison.md",
+          "hash": "dc1b612e16f49c59f07e2355d91bb765b57e64a20234f92643525d3a4bf86358"
+        }
+      ],
+      "entities": [
+        "feature:selective-graph-recall"
+      ],
+      "reason": "Reviewed positive/negative prompts, paths, contradiction/provenance/state isolation and explicit expansion; added same-page regression.",
+      "symbols": [
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests",
+          "symbol": "SelectiveRecallTests",
+          "kind": "class",
+          "definitions": [
+            {
+              "line": 26,
+              "end_line": 214,
+              "kind": "class"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.setUp",
+          "symbol": "SelectiveRecallTests.setUp",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 27,
+              "end_line": 39,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.add_source",
+          "symbol": "SelectiveRecallTests.add_source",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 41,
+              "end_line": 62,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.recall",
+          "symbol": "SelectiveRecallTests.recall",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 64,
+              "end_line": 65,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.hook",
+          "symbol": "SelectiveRecallTests.hook",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 67,
+              "end_line": 72,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_original_question_and_explicit_references_in_brief_context",
+          "symbol": "SelectiveRecallTests.test_original_question_and_explicit_references_in_brief_context",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 74,
+              "end_line": 84,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_vague_approval_and_unrelated_prompts_inject_nothing_for_all_clients",
+          "symbol": "SelectiveRecallTests.test_vague_approval_and_unrelated_prompts_inject_nothing_for_all_clients",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 86,
+              "end_line": 94,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_exact_path_and_qualified_symbol_select_the_code_identity",
+          "symbol": "SelectiveRecallTests.test_exact_path_and_qualified_symbol_select_the_code_identity",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 96,
+              "end_line": 101,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_cross_page_duplicate_retains_both_sources_in_log_and_citations",
+          "symbol": "SelectiveRecallTests.test_cross_page_duplicate_retains_both_sources_in_log_and_citations",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 103,
+              "end_line": 113,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_conflicting_numbers_negation_and_state_are_not_collapsed",
+          "symbol": "SelectiveRecallTests.test_conflicting_numbers_negation_and_state_are_not_collapsed",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 115,
+              "end_line": 121,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_attribution_and_code_identity_are_not_merged_by_text_normalization",
+          "symbol": "SelectiveRecallTests.test_attribution_and_code_identity_are_not_merged_by_text_normalization",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 123,
+              "end_line": 129,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_stale_exact_source_is_suppressed_and_detail_retains_the_label",
+          "symbol": "SelectiveRecallTests.test_stale_exact_source_is_suppressed_and_detail_retains_the_label",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 131,
+              "end_line": 137,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_deleted_and_superseded_sources_are_ineligible_in_both_views",
+          "symbol": "SelectiveRecallTests.test_deleted_and_superseded_sources_are_ineligible_in_both_views",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 139,
+              "end_line": 146,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_entity_expansion_fetches_neighbor_facts_without_guessing_test_paths",
+          "symbol": "SelectiveRecallTests.test_entity_expansion_fetches_neighbor_facts_without_guessing_test_paths",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 148,
+              "end_line": 158,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_small_budget_omits_whole_claims_and_counts_only_delivery",
+          "symbol": "SelectiveRecallTests.test_small_budget_omits_whole_claims_and_counts_only_delivery",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 160,
+              "end_line": 166,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_oversized_fact_does_not_hide_a_later_fitting_fact",
+          "symbol": "SelectiveRecallTests.test_oversized_fact_does_not_hide_a_later_fitting_fact",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 168,
+              "end_line": 175,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_cli_entity_only_is_read_only_and_bounded",
+          "symbol": "SelectiveRecallTests.test_cli_entity_only_is_read_only_and_bounded",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 177,
+              "end_line": 185,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_inactive_alias_does_not_seed_an_active_entity",
+          "symbol": "SelectiveRecallTests.test_inactive_alias_does_not_seed_an_active_entity",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 187,
+              "end_line": 192,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_heading_passages_are_not_automatic_evidence",
+          "symbol": "SelectiveRecallTests.test_heading_passages_are_not_automatic_evidence",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 194,
+              "end_line": 201,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_selective_recall.py#SelectiveRecallTests.test_same_page_identical_text_with_different_states_survives_candidate_loading",
+          "symbol": "SelectiveRecallTests.test_same_page_identical_text_with_different_states_survives_candidate_loading",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 203,
+              "end_line": 214,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "contextlib",
+          "name": "redirect_stdout",
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "copy",
+          "name": "deepcopy",
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "io",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "sys",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "tempfile",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": "mock",
+          "alias": null,
+          "level": 0,
+          "line": 11,
+          "scope": ""
+        },
+        {
+          "module": "engineering_graph",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 15,
+          "scope": ""
+        },
+        {
+          "module": "recall_graph",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 16,
+          "scope": ""
+        },
+        {
+          "module": "recall_hook",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 17,
+          "scope": ""
+        },
+        {
+          "module": "recall_selection",
+          "name": "analyze_query",
+          "alias": null,
+          "level": 0,
+          "line": 18,
+          "scope": ""
+        },
+        {
+          "module": "recall_selection",
+          "name": "deduplicate",
+          "alias": null,
+          "level": 0,
+          "line": 18,
+          "scope": ""
+        },
+        {
+          "module": "recall_selection",
+          "name": "select_facts",
+          "alias": null,
+          "level": 0,
+          "line": 197,
+          "scope": "SelectiveRecallTests.test_heading_passages_are_not_automatic_evidence"
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.571848+00:00"
+    },
+    {
+      "path": "tools/tests/test_source_coverage.py",
+      "hash": "a3e1df99f212624825ea3d95242915f3da25c91119cc61b34df037e6985b68ad",
+      "bytes": 8902,
+      "characters": 8902,
+      "category": "test",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/codebase-bootstrap.md",
+          "hash": "7e68778e2a82e020f4e16bd0d537d93e0c258c5ed31530ec20bf1310cfc4e4e9"
+        }
+      ],
+      "entities": [
+        "feature:source-review-coverage"
+      ],
+      "reason": "Implemented/reviewed eight coverage regressions, including relocated CLI and exact publication support.",
+      "symbols": [
+        {
+          "key": "code:tools/tests/test_source_coverage.py#CoverageTests",
+          "symbol": "CoverageTests",
+          "kind": "class",
+          "definitions": [
+            {
+              "line": 19,
+              "end_line": 158,
+              "kind": "class"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_source_coverage.py#CoverageTests.setUp",
+          "symbol": "CoverageTests.setUp",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 20,
+              "end_line": 32,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_source_coverage.py#CoverageTests.initialize",
+          "symbol": "CoverageTests.initialize",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 34,
+              "end_line": 38,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_source_coverage.py#CoverageTests.topic",
+          "symbol": "CoverageTests.topic",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 40,
+              "end_line": 43,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_source_coverage.py#CoverageTests.record",
+          "symbol": "CoverageTests.record",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 45,
+              "end_line": 47,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_source_coverage.py#CoverageTests.test_inventory_handles_nested_async_and_duplicate_definition_sites_without_execution",
+          "symbol": "CoverageTests.test_inventory_handles_nested_async_and_duplicate_definition_sites_without_execution",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 49,
+              "end_line": 67,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_source_coverage.py#CoverageTests.test_inventory_is_unresolved_until_recorded_and_never_creates_database",
+          "symbol": "CoverageTests.test_inventory_is_unresolved_until_recorded_and_never_creates_database",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 69,
+              "end_line": 75,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_source_coverage.py#CoverageTests.test_review_requires_delivered_chunks_source_links_and_canonical_entities",
+          "symbol": "CoverageTests.test_review_requires_delivered_chunks_source_links_and_canonical_entities",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 77,
+              "end_line": 89,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_source_coverage.py#CoverageTests.test_source_and_topic_drift_invalidate_completion_and_refresh_resets_changed_files",
+          "symbol": "CoverageTests.test_source_and_topic_drift_invalidate_completion_and_refresh_resets_changed_files",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 91,
+              "end_line": 99,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_source_coverage.py#CoverageTests.test_parse_errors_and_budget_gaps_remain_visible",
+          "symbol": "CoverageTests.test_parse_errors_and_budget_gaps_remain_visible",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 101,
+              "end_line": 111,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_source_coverage.py#CoverageTests.test_omission_requires_a_reason_and_excluded_sources_are_listed",
+          "symbol": "CoverageTests.test_omission_requires_a_reason_and_excluded_sources_are_listed",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 113,
+              "end_line": 122,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_source_coverage.py#CoverageTests.test_publication_requires_current_note_hash_and_source_specific_entity",
+          "symbol": "CoverageTests.test_publication_requires_current_note_hash_and_source_specific_entity",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 124,
+              "end_line": 138,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_source_coverage.py#CoverageTests.test_relocated_cli_inventory_record_export_and_stale_detection",
+          "symbol": "CoverageTests.test_relocated_cli_inventory_record_export_and_stale_detection",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 140,
+              "end_line": 158,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_source_coverage.py#CoverageTests.test_relocated_cli_inventory_record_export_and_stale_detection.run",
+          "symbol": "CoverageTests.test_relocated_cli_inventory_record_export_and_stale_detection.run",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 142,
+              "end_line": 146,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "contextlib",
+          "name": "closing",
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "shutil",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "subprocess",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "sys",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "tempfile",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": "mock",
+          "alias": null,
+          "level": 0,
+          "line": 11,
+          "scope": ""
+        },
+        {
+          "module": "bootstrap_knowledge",
+          "name": null,
+          "alias": "bootstrap",
+          "level": 0,
+          "line": 15,
+          "scope": ""
+        },
+        {
+          "module": "source_coverage",
+          "name": null,
+          "alias": "coverage",
+          "level": 0,
+          "line": 16,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:19.091203+00:00"
+    },
+    {
+      "path": "tools/tests/test_watcher_startup.py",
+      "hash": "7496868dd0e886baf5739a229354acd635484bd3b8cc0049ed0e89022218259d",
+      "bytes": 11317,
+      "characters": 11317,
+      "category": "test",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/watcher-startup.md",
+          "hash": "0fe7077c7b624aa3b8bb6ac00bb5b8b513d8dc5114818a469aee163e8a49981c"
+        }
+      ],
+      "entities": [
+        "feature:shared-watcher-startup"
+      ],
+      "reason": "Reviewed concurrent startup, live edits, recovery and relocated configured-command tests.",
+      "symbols": [
+        {
+          "key": "code:tools/tests/test_watcher_startup.py#WatcherStartupTests",
+          "symbol": "WatcherStartupTests",
+          "kind": "class",
+          "definitions": [
+            {
+              "line": 19,
+              "end_line": 261,
+              "kind": "class"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_watcher_startup.py#WatcherStartupTests.setUp",
+          "symbol": "WatcherStartupTests.setUp",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 20,
+              "end_line": 24,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_watcher_startup.py#WatcherStartupTests.make_project",
+          "symbol": "WatcherStartupTests.make_project",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 26,
+              "end_line": 56,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_watcher_startup.py#WatcherStartupTests.launch",
+          "symbol": "WatcherStartupTests.launch",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 58,
+              "end_line": 68,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_watcher_startup.py#WatcherStartupTests.pids",
+          "symbol": "WatcherStartupTests.pids",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 70,
+              "end_line": 74,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_watcher_startup.py#WatcherStartupTests.stop",
+          "symbol": "WatcherStartupTests.stop",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 76,
+              "end_line": 84,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_watcher_startup.py#WatcherStartupTests.tearDown",
+          "symbol": "WatcherStartupTests.tearDown",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 86,
+              "end_line": 90,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_watcher_startup.py#WatcherStartupTests.jobs",
+          "symbol": "WatcherStartupTests.jobs",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 92,
+              "end_line": 96,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_watcher_startup.py#WatcherStartupTests.assert_started",
+          "symbol": "WatcherStartupTests.assert_started",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 98,
+              "end_line": 100,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_watcher_startup.py#WatcherStartupTests.test_concurrent_startup_and_manual_launch_share_one_watcher",
+          "symbol": "WatcherStartupTests.test_concurrent_startup_and_manual_launch_share_one_watcher",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 102,
+              "end_line": 136,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_watcher_startup.py#WatcherStartupTests.test_projects_have_independent_watchers",
+          "symbol": "WatcherStartupTests.test_projects_have_independent_watchers",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 138,
+              "end_line": 144,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_watcher_startup.py#WatcherStartupTests.test_next_startup_recovers_after_exit_and_scans_offline_notes",
+          "symbol": "WatcherStartupTests.test_next_startup_recovers_after_exit_and_scans_offline_notes",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 146,
+              "end_line": 154,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_watcher_startup.py#WatcherStartupTests.test_startup_failure_is_reported_and_temporary_files_are_removed",
+          "symbol": "WatcherStartupTests.test_startup_failure_is_reported_and_temporary_files_are_removed",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 156,
+              "end_line": 162,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/tests/test_watcher_startup.py#WatcherStartupTests.test_hook_commands_work_in_a_relocated_project_from_subdirectories",
+          "symbol": "WatcherStartupTests.test_hook_commands_work_in_a_relocated_project_from_subdirectories",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 165,
+              "end_line": 261,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "concurrent.futures",
+          "name": "ThreadPoolExecutor",
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "os",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "re",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "shutil",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "signal",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 7,
+          "scope": ""
+        },
+        {
+          "module": "sqlite3",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "subprocess",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "sys",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "tempfile",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 11,
+          "scope": ""
+        },
+        {
+          "module": "time",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 12,
+          "scope": ""
+        },
+        {
+          "module": "unittest",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 13,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.834275+00:00"
+    },
+    {
+      "path": "tools/watch_llm_wiki.py",
+      "hash": "7a14c82c0f336ed2088009be6ae805f8e1b9bc44308e75c8cda049a620988162",
+      "bytes": 2047,
+      "characters": 2047,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/watcher-startup.md",
+          "hash": "0fe7077c7b624aa3b8bb6ac00bb5b8b513d8dc5114818a469aee163e8a49981c"
+        }
+      ],
+      "entities": [
+        "feature:shared-watcher-startup"
+      ],
+      "reason": "Reviewed listener-before-scan ordering, debounce and hash reconciliation.",
+      "symbols": [
+        {
+          "key": "code:tools/watch_llm_wiki.py#notify_ready",
+          "symbol": "notify_ready",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 14,
+              "end_line": 16,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/watch_llm_wiki.py#run_watcher",
+          "symbol": "run_watcher",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 19,
+              "end_line": 52,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/watch_llm_wiki.py#main",
+          "symbol": "main",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 55,
+              "end_line": 64,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "argparse",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "json",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "os",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "pathlib",
+          "name": "Path",
+          "alias": null,
+          "level": 0,
+          "line": 4,
+          "scope": ""
+        },
+        {
+          "module": "watchfiles",
+          "name": "watch",
+          "alias": null,
+          "level": 0,
+          "line": 6,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "NOTES_DIR",
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "PROJECT_ROOT",
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "EXTRACTION_PROMPT_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 8,
+          "scope": ""
+        },
+        {
+          "module": "queue_store",
+          "name": "open_database",
+          "alias": null,
+          "level": 0,
+          "line": 9,
+          "scope": ""
+        },
+        {
+          "module": "source_sync",
+          "name": "synchronize_sources",
+          "alias": null,
+          "level": 0,
+          "line": 10,
+          "scope": ""
+        },
+        {
+          "module": "watcher_lock",
+          "name": "watcher_lock",
+          "alias": null,
+          "level": 0,
+          "line": 11,
+          "scope": ""
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.765768+00:00"
+    },
+    {
+      "path": "tools/watcher_lock.py",
+      "hash": "b7d95112953eacc47db2f8d0860715bba4f9bf69482d6f6d1202529306611418",
+      "bytes": 1257,
+      "characters": 1257,
+      "category": "source",
+      "chunks": 1,
+      "status": "reviewed",
+      "topics": [
+        {
+          "path": "llm-wiki/watcher-startup.md",
+          "hash": "0fe7077c7b624aa3b8bb6ac00bb5b8b513d8dc5114818a469aee163e8a49981c"
+        }
+      ],
+      "entities": [
+        "feature:shared-watcher-startup"
+      ],
+      "reason": "Reviewed lifetime OS lock, independent operation locks and persistent inode semantics.",
+      "symbols": [
+        {
+          "key": "code:tools/watcher_lock.py#file_lock",
+          "symbol": "file_lock",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 9,
+              "end_line": 37,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/watcher_lock.py#watcher_lock",
+          "symbol": "watcher_lock",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 41,
+              "end_line": 43,
+              "kind": "function"
+            }
+          ]
+        },
+        {
+          "key": "code:tools/watcher_lock.py#watcher_is_running",
+          "symbol": "watcher_is_running",
+          "kind": "function",
+          "definitions": [
+            {
+              "line": 46,
+              "end_line": 48,
+              "kind": "function"
+            }
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "module": "errno",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 1,
+          "scope": ""
+        },
+        {
+          "module": "os",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 2,
+          "scope": ""
+        },
+        {
+          "module": "contextlib",
+          "name": "contextmanager",
+          "alias": null,
+          "level": 0,
+          "line": 3,
+          "scope": ""
+        },
+        {
+          "module": "paths",
+          "name": "WATCHER_LOCK_PATH",
+          "alias": null,
+          "level": 0,
+          "line": 5,
+          "scope": ""
+        },
+        {
+          "module": "msvcrt",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 16,
+          "scope": "file_lock"
+        },
+        {
+          "module": "fcntl",
+          "name": null,
+          "alias": null,
+          "level": 0,
+          "line": 21,
+          "scope": "file_lock"
+        }
+      ],
+      "parse_error": null,
+      "reviewed_at": "2026-10-28T17:12:18.788395+00:00"
+    }
+  ],
+  "scan_gaps": [],
+  "excluded": [
+    {
+      "path": ".vscode/settings.json",
+      "reason": "Configured inventory exclusion or non-UTF-8/binary file"
+    },
+    {
+      "path": "llm-wiki/architecture.md",
+      "reason": "Configured inventory exclusion or non-UTF-8/binary file"
+    },
+    {
+      "path": "llm-wiki/codebase-bootstrap.md",
+      "reason": "Configured inventory exclusion or non-UTF-8/binary file"
+    },
+    {
+      "path": "llm-wiki/engineering-knowledge-model.md",
+      "reason": "Configured inventory exclusion or non-UTF-8/binary file"
+    },
+    {
+      "path": "llm-wiki/extraction-contract.md",
+      "reason": "Configured inventory exclusion or non-UTF-8/binary file"
+    },
+    {
+      "path": "llm-wiki/extraction-queue.md",
+      "reason": "Configured inventory exclusion or non-UTF-8/binary file"
+    },
+    {
+      "path": "llm-wiki/graph-retrieval-comparison.md",
+      "reason": "Configured inventory exclusion or non-UTF-8/binary file"
+    },
+    {
+      "path": "llm-wiki/index.md",
+      "reason": "Configured inventory exclusion or non-UTF-8/binary file"
+    },
+    {
+      "path": "llm-wiki/log.md",
+      "reason": "Configured inventory exclusion or non-UTF-8/binary file"
+    },
+    {
+      "path": "llm-wiki/session-capture.md",
+      "reason": "Configured inventory exclusion or non-UTF-8/binary file"
+    },
+    {
+      "path": "llm-wiki/watcher-startup.md",
+      "reason": "Configured inventory exclusion or non-UTF-8/binary file"
+    },
+    {
+      "path": "llm-wiki/wiki-maintenance.md",
+      "reason": "Configured inventory exclusion or non-UTF-8/binary file"
+    },
+    {
+      "path": "raw/engineering-knowledge-proposal-2026-10-27.md",
+      "reason": "Configured inventory exclusion or non-UTF-8/binary file"
+    },
+    {
+      "path": "tools/uv.lock",
+      "reason": "Configured inventory exclusion or non-UTF-8/binary file"
+    }
+  ],
+  "scope": "Eligible first-party text files; Python class/function definitions and imported-name entries. Symbols are structural observations, not proof of semantic completeness or ownership."
+}

@@ -2,6 +2,7 @@ from contextlib import redirect_stderr, redirect_stdout
 import io
 import json
 from pathlib import Path
+import re
 import sqlite3
 import subprocess
 import sys
@@ -88,7 +89,7 @@ class RecallHookTests(unittest.TestCase):
         for client in ("claude", "codex", "cursor"):
             with self.subTest(client=client):
                 output, errors = self.invoke(
-                    client, {"prompt": "Explain Refund policy"}, options=("--hops", "2")
+                    client, {"prompt": "Explain Refund policy"}, options=("--view", "detail", "--hops", "2")
                 )
                 context = self.context(client, output)
                 self.assertIn("Refund policy (POLICY)", context)
@@ -105,6 +106,13 @@ class RecallHookTests(unittest.TestCase):
                 self.assertEqual(record["hops"], 2)
                 self.assertEqual(record["traversal_limit"], 100)
                 self.assertEqual(record["error"], None)
+                delivery = record["delivery"]
+                self.assertEqual(delivery["facts_supplied"], 0)
+                self.assertEqual(delivery["relationships_supplied"], 2)
+                self.assertEqual(delivery["excerpts_supplied"], 1)
+                self.assertEqual(delivery["source_pages_supplied"], 2)
+                self.assertEqual(delivery["usage"], "not_assessed")
+                self.assertNotIn("systemMessage", output)
                 self.assertIn("person", {node["id"] for node in record["retrieval"]["nodes"]})
                 self.assertEqual(record["retrieval"]["edges"][1]["source_doc"], "llm-wiki/roles.md")
         self.assertEqual(len(self.records()), 3)
@@ -119,10 +127,7 @@ class RecallHookTests(unittest.TestCase):
                     record = self.records()[-1]
                     self.assertEqual(record["status"], "no_matches" if event.get("prompt") == "Unknown topic" else "no_prompt")
                     self.assertEqual(record["prompt"], event.get("prompt"))
-                    if event.get("prompt") == "Unknown topic":
-                        self.assertIn("no_matches", record["context"])
-                    else:
-                        self.assertEqual(record["context"], "")
+                    self.assertEqual(record["context"], "")
 
     def test_missing_database_is_not_created(self):
         missing = self.path.parent / "missing.sqlite3"
@@ -165,7 +170,7 @@ class RecallHookTests(unittest.TestCase):
             database.execute("DELETE FROM graph_nodes")
 
         with mock.patch.object(recall_hook, "recall_graph", side_effect=attempt_write):
-            output, errors = self.invoke("codex", {"prompt": "Refund policy"})
+            output, errors = self.invoke("codex", {"prompt": "Refund policy"}, options=("--view", "detail"))
 
         self.assert_allowed_without_context("codex", output)
         self.assertIn("readonly", errors)
@@ -181,7 +186,7 @@ class RecallHookTests(unittest.TestCase):
             return find_edges(database, matches, question, **options)
 
         with mock.patch.object(recall_graph, "find_edges", side_effect=change_graph):
-            output, errors = self.invoke("codex", {"prompt": "Refund policy"})
+            output, errors = self.invoke("codex", {"prompt": "Refund policy"}, options=("--view", "detail"))
 
         context = self.context("codex", output)
         self.assertIn("Refund policy (POLICY)", context)
@@ -217,7 +222,7 @@ class RecallHookTests(unittest.TestCase):
             for client in ("claude", "codex", "cursor"):
                 with self.subTest(client=client):
                     output, errors = self.invoke(client, {"prompt": "Refund policy"})
-                    self.assertIn("Refund policy (POLICY)", self.context(client, output))
+                    self.assertIn("Refund policy", self.context(client, output))
                     self.assertIn("Ryujin recall log failed:", errors)
 
     def test_concurrent_processes_append_complete_records(self):
@@ -260,7 +265,7 @@ for index in range(10):
 
     def test_hop_and_traversal_options_control_context(self):
         output, errors = self.invoke(
-            "codex", {"prompt": "Refund policy"}, options=("--hops", "0")
+            "codex", {"prompt": "Refund policy"}, options=("--view", "detail", "--hops", "0")
         )
         context = self.context("codex", output)
         self.assertIn("Refunds need approval.", context)
@@ -269,7 +274,7 @@ for index in range(10):
 
         output, errors = self.invoke(
             "codex", {"prompt": "Refund policy"},
-            options=("--hops", "2", "--traversal-limit", "1"),
+            options=("--view", "detail", "--hops", "2", "--traversal-limit", "1"),
         )
         context = self.context("codex", output)
         self.assertIn("results are partial", context)
@@ -281,7 +286,7 @@ for index in range(10):
         self.database.execute(
             "UPDATE graph_node_sources SET description = ?", ("Knowledge " * 1000,)
         )
-        output, errors = self.invoke("codex", {"prompt": "Refund policy"})
+        output, errors = self.invoke("codex", {"prompt": "Refund policy"}, options=("--view", "detail"))
         context = self.context("codex", output)
         self.assertLessEqual(len(context), recall_hook.MAX_CONTEXT_CHARS)
         self.assertTrue(context.endswith("[Additional context omitted.]"))
@@ -291,6 +296,108 @@ for index in range(10):
         self.assertEqual(record["context"], context)
         policy = next(node for node in record["retrieval"]["nodes"] if node["id"] == "policy")
         self.assertGreater(len(policy["descriptions"][0]["description"]), recall_hook.MAX_CONTEXT_CHARS)
+
+
+class RecallDeliveryTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory(prefix="ryujin-source-links-")
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name) / "host project (with spaces)"
+        self.notes = self.root / "llm-wiki"
+        self.notes.mkdir(parents=True)
+        (self.notes / "publication.md").write_text(
+            "# Publication\n\n## Behavior\n\nPublication is atomic.\n\n## Design [v2]\n\nKeep evidence.\n"
+        )
+        patch = mock.patch.object(recall_hook, "PROJECT_ROOT", self.root)
+        patch.start()
+        self.addCleanup(patch.stop)
+
+    def fact(self, identity, text, section="Behavior", source="llm-wiki/publication.md"):
+        return {"id": identity, "title": "Publication", "text": text,
+                "state": "current", "lifecycle": "implemented", "freshness": "snapshot",
+                "source_doc": source, "evidence": [{"section": section}]}
+
+    def result(self, *facts, **extra):
+        return {"matches": [{"id": "publication"}], "nodes": [], "edges": [],
+                "facts": list(facts), "status": "matched", "matches_truncated": False,
+                "edges_truncated": False, "traversal_limit_reached": False, **extra}
+
+    def test_counts_distinct_pages_and_links_exact_source_sections(self):
+        context, delivery = recall_hook.format_recall(self.result(
+            self.fact("atomic", "Publication is atomic."),
+            self.fact("evidence", "Keep evidence.", "Design [v2]"),
+        ))
+        self.assertEqual(delivery["facts_supplied"], 2)
+        self.assertEqual(delivery["source_pages_supplied"], 1)
+        self.assertEqual([c["line"] for c in delivery["citations"]], [3, 7])
+        target = str((self.notes / "publication.md").resolve())
+        self.assertIn(f"[Behavior](<{target}:3>)", context)
+        self.assertIn(f"[Design \\[v2\\]](<{target}:7>)", context)
+        self.assertEqual(delivery["facts"], [
+            {"label": "F1", "fact_id": "atomic", "citation": "S1"},
+            {"label": "F2", "fact_id": "evidence", "citation": "S2"},
+        ])
+        self.assertEqual(delivery["usage"], "not_assessed")
+        self.assertIn("Respect explicit user response-format constraints", context)
+
+    def test_oversized_facts_are_not_counted_or_cut_into_incomplete_claims(self):
+        context, delivery = recall_hook.format_recall(self.result(
+            self.fact("too-long", "UNSUPPLIED " * 2000, source="llm-wiki/omitted.md"),
+            self.fact("small", "Publication is atomic."),
+        ))
+        self.assertLessEqual(len(context), recall_hook.MAX_CONTEXT_CHARS)
+        self.assertNotIn("UNSUPPLIED", context)
+        self.assertNotIn("omitted.md", context)
+        self.assertIn("Publication is atomic.", context)
+        self.assertEqual(delivery["facts_supplied"], 1)
+        self.assertEqual(delivery["source_pages_supplied"], 1)
+        self.assertEqual(delivery["facts"][0]["fact_id"], "small")
+        self.assertEqual(re.findall(r"^- \[(F\d+);", context, re.M), ["F1"])
+        self.assertTrue(delivery["partial"])
+        self.assertTrue(delivery["context_truncated"])
+        self.assertTrue(context.endswith("[Additional context omitted.]"))
+
+    def test_upstream_partial_flag_is_separate_from_context_omission(self):
+        context, delivery = recall_hook.format_recall(self.result(
+            self.fact("atomic", "Publication is atomic."), matches_truncated=True,
+        ))
+        self.assertTrue(delivery["partial"])
+        self.assertFalse(delivery["context_truncated"])
+        self.assertIn("results are partial", context)
+        self.assertNotIn("[Additional context omitted.]", context)
+
+    def test_full_text_passages_are_counted_as_excerpts_rather_than_facts(self):
+        passage = self.fact("passage:publication", "# Publication\n\n")
+        passage["kind"] = "passage"
+        passage["title"] = "Publication"
+        passage["evidence"] = []
+        context, delivery = recall_hook.format_recall(self.result(
+            self.fact("atomic", "Publication is atomic."), passage,
+        ))
+        self.assertEqual(delivery["facts_supplied"], 1)
+        self.assertEqual(delivery["excerpts_supplied"], 1)
+        self.assertEqual(delivery["source_pages_supplied"], 1)
+        self.assertEqual(delivery["excerpts"][0]["record_id"], "passage:publication")
+        self.assertIn("[P1; S2]", context)
+        self.assertEqual(delivery["citations"][1]["line"], 1)
+
+    def test_misses_supply_no_evidence_or_graph_use_claim(self):
+        context, delivery = recall_hook.format_recall({
+            "matches": [], "facts": [], "status": "no_matches",
+        })
+        self.assertEqual(delivery["facts_supplied"], 0)
+        self.assertEqual(delivery["citations"], [])
+        self.assertEqual(delivery["usage"], "not_assessed")
+        self.assertIn("do not show a graph-use callout", context)
+
+    def test_source_links_do_not_invent_heading_lines_or_read_outside_project(self):
+        missing = recall_hook.citation("llm-wiki/publication.md", "Missing heading")
+        self.assertIsNone(missing["line"])
+        self.assertNotIn(":1>", missing["markdown"])
+        with mock.patch.object(Path, "read_text") as read:
+            outside = recall_hook.citation("../private.md", "Secret")
+            read.assert_not_called()
+        self.assertEqual(outside["markdown"], "../private.md#Secret")
 
 
 if __name__ == "__main__":

@@ -118,8 +118,11 @@ class EngineeringKnowledgeTests(unittest.TestCase):
                      redirect_stdout(out):
                     recall_hook.main()
                 output = json.loads(out.getvalue())
-                context = output["additional_context"] if client=="cursor" else output["hookSpecificOutput"]["additionalContext"]
-                self.assertIn(BEHAVIOR if question==QUESTION else "no_matches",context)
+                context = output.get("additional_context", "") if client=="cursor" else output.get("hookSpecificOutput", {}).get("additionalContext", "")
+                if question == QUESTION:
+                    self.assertIn(BEHAVIOR,context)
+                else:
+                    self.assertEqual(context, "")
                 self.assertNotIn("decision",output)
 
     def test_hash_reconciliation_is_idempotent_and_skips_index_log(self):

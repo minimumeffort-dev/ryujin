@@ -88,6 +88,17 @@ attribution contracts and migration.
 
 
 ### Prompt-time graph recall
+
+Since selective recall was implemented on 2026-10-28, configured prompt hooks use
+automatic brief mode: up to three evidence records and 2,000 characters including
+receipt/citations. Weak/vague prompts can supply no context. Automatic mode performs
+no general graph traversal; the configured --hops 2 argument remains usable with
+explicit detail mode. Agents can expand a canonical key with --entity KEY --view
+detail --hops 2. Missing databases/errors still allow submission with bounded guidance.
+See [implemented selective recall](graph-retrieval-comparison.md#implemented-selective-recall).
+
+Historical pre-selective hook defaults, retained for their implementation history:
+
 The shared [recall hook](../tools/recall_hook.py) reads the submitted `prompt`,
 queries the graph through a read-only snapshot and formats source-backed facts
 as reference data. The configured hooks use two hops and the default budget of
@@ -101,6 +112,15 @@ or the queue and makes no model calls.
 - [Cursor hooks](../.cursor/hooks.json) run on `beforeSubmitPrompt`, returning
   `continue: true` and, when matches exist, `additional_context`.
 - All three use [the portable bootstrap](../tools/run_hook.sh).
+
+Since 2026-10-28, recall context includes a bounded delivery summary and clickable
+source-section citations. The assistant reports supplied evidence in commentary
+and adds a **From your knowledge graph** blockquote only when those sources inform
+the answer, respecting explicit response-format requests. Codex's native progress
+label is "Searching your project graph...". Whole evidence records and their links
+fit the same 6,000-character budget; omitted records are not counted as supplied,
+and FTS passages/legacy descriptions count as excerpts. See
+[implemented feedback and verification](graph-retrieval-comparison.md#implemented-recall-feedback).
 
 Codex requires review of new or changed hook definitions through `/hooks`
 before they run; see [OpenAI's hook documentation](https://learn.chatgpt.com/docs/hooks#review-and-trust-hooks).
@@ -124,6 +144,12 @@ for the observed retrieval miss and implemented changes.
 
 
 ### Recall log
+
+Selective recall adds the view and configured character budget. Its structured
+result includes query signals, candidate/selected counts, rejection reasons,
+duplicate source groups and available detail. Ordinary weak matches log no_matches
+and zero supplied evidence without injecting fallback text. Diagnostic failures
+remain distinct. The delivery receipt describes only output that actually fit.
 The shared [recall hook](../tools/recall_hook.py) appends one JSON record per
 invocation to `.state/recall_runs.jsonl`, using
 [the shared path definition](../tools/paths.py). Records contain a UTC timestamp,
@@ -132,6 +158,11 @@ hop and traversal settings, status, structured graph results, exact returned
 context, context length and any retrieval error. Graph results preserve matched
 nodes, descriptions, source paths, relationships and traversal metadata, including
 information omitted from the capped text context.
+
+Since 2026-10-28, each record also contains `delivery`: supplied fact, relationship,
+excerpt and distinct-page counts, partial/omission flags, record/citation identifiers
+and local source links. Its `usage` is `not_assessed`; it describes returned context,
+not the assistant's eventual cited use. No-prompt events have no delivery receipt.
 
 Statuses are `matched`, `no_matches`, `empty_index`, `no_prompt`, `missing_database` and `error`.
 JSON escaping keeps multiline prompts and context in one record per line.

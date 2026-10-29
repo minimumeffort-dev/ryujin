@@ -43,6 +43,12 @@ For a new host project with an empty wiki, inspect code and tests and write a
 bounded architecture and feature map. Do not reconstruct historical reasons by
 guessing. Capture is agent work: the watcher cannot recover knowledge never saved.
 
+The implemented [codebase bootstrap](codebase-bootstrap.md) now tracks that initial
+source review and publication of baseline notes. It preserves existing wiki and
+graph knowledge and feeds the same extraction queue. Later changes use normal
+capture; an empty/missing graph with existing baseline notes calls for extraction
+rather than unnecessary rescanning.
+
 Index and log pages remain navigation and historical ledger records. They no
 longer generate primary extraction jobs. Their previously accepted results remain
 preserved and explicitly searchable through history.
@@ -66,12 +72,22 @@ atomically with acceptance and job completion. That behavior is documented in
 [Graph building](session-capture.md#graph-building) and implemented by
 tools/queue_store.py#acknowledge.
 
+Historical pre-selective fallback policy:
+
 Prompt hooks now supply an explicit status on a miss, missing database, empty
 index or retrieval error, with a suggestion to retry or consult the wiki. Failure
 still allows prompt submission. Shared client adapters retain their existing
 commands, hop/row budgets and 6000-character context cap. This Codex chat has
 demonstrated automatic hook execution and model-visible context; Claude and
 Cursor model delivery need independent verification.
+
+Since selective recall was implemented on 2026-10-28, automatic hooks supply at
+most three records within 2,000 characters and can inject nothing for weak/vague
+prompts. Miss status and selection reasons remain in the local log; database/index
+failures retain bounded guidance. Explicit --entity KEY --view detail expansion
+returns broader facts/relationships. Compatible duplicate assertions retain source
+provenance; missing implementation/test references are not inferred. See
+[implemented selective recall](graph-retrieval-comparison.md#implemented-selective-recall).
 
 [Source reconciliation](../tools/source_sync.py) tracks content hashes, ignores
 unchanged source/prompt combinations, excludes index/log from primary jobs and
@@ -115,6 +131,37 @@ the initial publication method; incremental graph updates are deferred.
 ## Code locations
 
 [prompt.md](../tools/extraction/prompt.md) defines extraction; [engineering.py](../tools/extraction/engineering.py) validates it; [engineering_graph.py](../tools/engineering_graph.py) publishes facts and indexes; [migrations.py](../tools/migrations.py) preserves legacy data. [queue_store.py](../tools/queue_store.py), `acknowledge`, connects validation, snapshots, publication and completion. See [the architecture map](architecture.md).
+
+- [build_graph.py](../tools/build_graph.py): rebuild_graph validates latest accepted
+  files and hashes against archived snapshots before clearing derived graph tables.
+- [schema.sql](../tools/schema.sql): queue, accepted pointers, immutable runs,
+  canonical identities, source-specific facts/edges and derived FTS5 structures.
+- [paths.py](../tools/paths.py): anchors project/wiki/state/database paths to the
+  installed tools directory, independently of the invoking working directory.
+- [Engineering tests](../tools/tests/test_engineering_knowledge.py): migration,
+  snapshots, inactive sources, source-specific support and transactional rollback.
+
+### Persistence and search boundaries
+
+Source review on 2026-10-29 confirmed UUID5 entity identity from canonical key and
+fact identity from source_doc plus fact key in engineering_graph.py. Shared entities
+retain source-specific descriptions, aliases, facts and relationships. A rebuild
+reads all latest accepted contributions; retrieval hides inactive/deleted sources
+while keeping accepted history. The builder uses the caller's transaction during
+acknowledgment or owns a BEGIN IMMEDIATE transaction when run independently.
+
+The FTS5 index includes names, aliases, fact text/rationale and subject code paths
+with Porter stemming. Passage fallback covers headings with no extracted fact;
+one fact carrying a heading suppresses passage fallback for that entire heading.
+Consequently fallback cannot recover every unextracted statement from a partially
+covered section. Passage windows are 1,800 characters with a 1,400-character stride.
+Archived records are searchable only with history requested. Supersession resolves
+fact keys globally, so unrelated assertions must not reuse the same fact key.
+
+Current-schema migration returns without upgrading or backing up; future schema
+versions are rejected and concurrent upgrades serialize. Only an actual legacy
+upgrade uses the documented migration backup. The 2026-10-29 coverage pass preserves
+the existing schema and database and takes no backup.
 
 ## Constraints
 
@@ -190,3 +237,11 @@ Historical decision makers and ongoing ownership remain unidentified where no ex
 - 2026-10-27: Recorded the engineering-knowledge proposal; the original remains preserved in raw/.
 - 2026-10-28: Implemented version-two extraction, canonical keys, evidence-backed attribution, snapshots/history, migration and FTS5 retrieval.
 - 2026-10-28: Standardized topic pages and connected capture obligations to the architecture map and queue-independent Stop review. Existing graph schema and accepted extraction files were preserved.
+- 2026-10-28: Connected initial host-project capture to the resumable source-review
+  bootstrap and normal extraction handoff; no new graph schema was required.
+- 2026-10-28: Updated automatic recall to selective brief context and silent weak
+  results, retaining explicit detail expansion and source provenance. Existing
+  knowledge/history schema is unchanged; all 91 tests passed.
+- 2026-10-29: Reviewed persistence/index source and tests; documented deterministic
+  identities, rebuild validation, heading-level passage limits and supersession-key
+  scope. All 100 tests passed; no schema change was needed.

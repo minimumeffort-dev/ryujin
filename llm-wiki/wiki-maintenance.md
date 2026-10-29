@@ -25,6 +25,11 @@ boundaries, dependencies or data flow change. Bootstrap a bounded source-backed
 map when adopting Ryujin in a new host project; inspect existing wiki coverage
 for gaps. Record unknown historical reasons as unknown.
 
+For initial adoption, follow [the bootstrap workflow](../tools/bootstrap/workflow.md).
+It tracks bounded source review, rejects source drift and incomplete coverage at
+handoff, and waits for normal graph publication of baseline notes. Subsequent work
+uses this task-boundary capture flow. See [bootstrap details](codebase-bootstrap.md).
+
 Describe current behavior separately from dated changes. Each meaningful change
 records before/after behavior, the stated reason, affected code and observed
 verification. Include a date and commit/issue references when available; for
@@ -58,6 +63,27 @@ model process is launched. The review depends on the current agent following the
 instructions; it does not guarantee complete capture or a fresh code audit.
 
 ## Code locations
+
+### Source reconciliation details
+
+Source review on 2026-10-29 confirmed synchronize_sources scans Markdown extensions
+case-insensitively and excludes symlinks resolving outside the wiki root. It compares
+source/prompt hashes and schema version inside the caller's transaction or its own
+BEGIN IMMEDIATE transaction. Index/log retain navigation/ledger classification;
+their pending jobs are completed without primary extraction. Deleted sources become
+inactive, their revision advances and active claims are cleared; accepted history
+is retained.
+
+queue_hook.py tests readiness as available pending work or an expired processing
+claim. Delayed, actively leased and failed jobs are not ready work. For every
+adapter, stop_hook_active or loop_count of at least one exits before logging or
+database access; Cursor additionally requires completed status. Queue errors still
+request capture review. These checks do not turn Stop into transcript ingestion.
+
+For an explicitly requested comprehensive pass, [AGENTS.md](../AGENTS.md) and
+[the bootstrap workflow](../tools/bootstrap/workflow.md) now require file dispositions
+and current topic/entity publication checks. Ordinary later changes still use
+task-boundary capture, not a new whole-repository scan.
 
 - [AGENTS.md](../AGENTS.md): cross-project capture and extraction obligations.
 - [Topic template](../tools/wiki/topic-template.md): reusable page sections outside
@@ -134,3 +160,7 @@ automatic transcript capture remains deferred.
 - 2026-10-28: Replaced queue-dependent capture reminders with a first-Stop capture
   review even for an empty queue; retained client loop guards. Added the shared
   topic structure and architecture maintenance obligations at Horia's request.
+- 2026-10-28: Linked existing-codebase bootstrap for initial source review and
+  publication, retaining normal capture for later changes.
+- 2026-10-29: Reviewed synchronization and Stop readiness/guard boundaries, linked
+  comprehensive coverage instructions, and reran all 100 tests successfully.

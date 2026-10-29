@@ -28,6 +28,29 @@ If the watcher exits, the next startup invocation can launch it again using the 
 
 ## Constraints
 
+### Runtime and configuration review
+
+Source review on 2026-10-29 checked all three configurations:
+[Claude](../.claude/settings.json), [Codex](../.codex/hooks.json) and
+[Cursor](../.cursor/hooks.json). Hooks use ten-second command timeouts; Cursor Stop
+has loop_limit 1. [pyproject.toml](../tools/pyproject.toml) requires Python 3.13 or
+newer and watchfiles >=1.3; uv.lock pins resolved dependencies. [.gitignore](../.gitignore)
+excludes local state, virtualenv and Python caches from committed knowledge.
+
+The startup helper waits up to five seconds for readiness and terminates/kills a
+failed child before cleaning temporary handshake files. The listener uses
+debounce=1000, step=250 and rust_timeout=250 milliseconds and is active before
+startup reconciliation. The lifetime OS lock's inode must not be deleted to
+simulate release. Bootstrap and coverage updates use independent lock paths.
+run_hook.sh resolves its own location and forwards stdin/arguments; it does not
+change the caller's directory, while Python tools anchor project paths themselves.
+
+[test_watcher_startup.py](../tools/tests/test_watcher_startup.py) checks simultaneous
+starts/manual launches, independent projects, exit recovery/offline edits, failure
+cleanup and every configured command in a relocated path with spaces and minimal
+PATH. On 2026-10-29 these checks passed within the 100-test suite. Configured-command
+checks do not add new proof of automatic client dispatch or live model delivery.
+
 One watcher is shared across chats. Client shutdown must not stop it. POSIX shell and uv are required for configured commands; Codex resolves a Git root. Operating-system locks protect concurrent startup, while source hashes prevent unchanged notes from creating new jobs. No automatic process supervisor is installed.
 
 ## Decisions and reasoning
@@ -67,3 +90,5 @@ Automatic startup-hook dispatch remains unverified separately from configured-co
 
 - 2026-10-27: Shared startup, singleton locking, offline reconciliation and portable commands were implemented; supervision was deferred. See [the dated ledger](log.md).
 - 2026-10-28: Hash reconciliation excludes index/log from primary extraction. Standardized this topic and linked the new queue-independent capture review; this documentation change does not itself verify additional clients.
+- 2026-10-29: Reviewed lifecycle/configuration/runtime paths and tests; recorded
+  readiness, locking and portable-command boundaries with explicit source links.

@@ -6,6 +6,7 @@ from collections import deque
 
 from paths import DATABASE_PATH
 from search_knowledge import search_knowledge
+from recall_selection import analyze_query, GENERIC, select_facts
 
 MAX_MATCHES = 5
 MAX_EDGES = 8
@@ -32,6 +33,26 @@ def find_matches(database, question, *, include_history=False):
         FROM graph_aliases AS alias
         JOIN graph_nodes AS node ON node.id = alias.node_id
         WHERE instr(?, casefold(alias.alias)) > 0
+          AND (? OR NOT EXISTS (SELECT 1 FROM knowledge_sources ks
+               WHERE ks.source_doc=alias.source_doc AND (ks.active=0 OR ks.kind<>'topic')))
+
+        UNION ALL
+
+        SELECT node.id,node.name,node.type,key.code_path AS term
+        FROM graph_entity_keys key JOIN graph_nodes node ON node.id=key.node_id
+        WHERE key.code_path IS NOT NULL AND instr(?,casefold(key.code_path)) > 0
+
+        UNION ALL
+
+        SELECT node.id,node.name,node.type,key.symbol AS term
+        FROM graph_entity_keys key JOIN graph_nodes node ON node.id=key.node_id
+        WHERE key.symbol IS NOT NULL AND instr(?,casefold(key.symbol)) > 0
+
+        UNION ALL
+
+        SELECT node.id,node.name,node.type,key.code_path || '#' || key.symbol AS term
+        FROM graph_entity_keys key JOIN graph_nodes node ON node.id=key.node_id
+        WHERE key.symbol IS NOT NULL AND instr(?,casefold(key.code_path || '#' || key.symbol)) > 0
         ) candidate
         WHERE ? OR ((NOT EXISTS (SELECT 1 FROM graph_node_sources ns WHERE ns.node_id=candidate.id)
           OR EXISTS (SELECT 1 FROM graph_node_sources ns LEFT JOIN knowledge_sources ks
@@ -43,7 +64,7 @@ def find_matches(database, question, *, include_history=False):
               WHERE f.node_id=candidate.id AND f.state NOT IN ('superseded','historical')
                 AND COALESCE(ks.active,1)=1 AND COALESCE(ks.kind,'topic')='topic')))
         """,
-        (question, question, int(include_history)),
+        (question, question, int(include_history), question, question, question, int(include_history)),
     ).fetchall()
 
     matches = {}
@@ -241,14 +262,63 @@ def recall_graph(
     hops=DEFAULT_HOPS,
     traversal_limit=DEFAULT_TRAVERSAL_LIMIT,
     include_history=False,
+    view="detail",
+    entity=None,
+    fact_limit=10,
 ):
     if hops < 0:
         raise ValueError("hops must be zero or greater")
     if traversal_limit < 1:
         raise ValueError("traversal_limit must be positive")
+    if view not in ("auto", "detail"):
+        raise ValueError("view must be auto or detail")
+    if fact_limit < 1 or fact_limit > 50:
+        raise ValueError("fact_limit must be between 1 and 50")
 
-    facts = search_knowledge(database, question, include_history=include_history)
     all_matches = find_matches(database, question, include_history=include_history)
+    if entity:
+        row = database.execute(
+            """SELECT n.id,n.name,n.type FROM graph_entity_keys k JOIN graph_nodes n
+               ON n.id=k.node_id WHERE k.entity_key=?""", (entity,)).fetchone()
+        if not row:
+            raise ValueError("Unknown canonical entity key")
+        # Reuse lifecycle eligibility, including sources deleted since publication.
+        eligible = find_matches(database, row["name"], include_history=include_history)
+        all_matches = [{**dict(row), "matched_as": entity}] if any(n["id"] == row["id"] for n in eligible) else []
+    anchors = [n for n in all_matches if entity or (
+        n["type"] not in ("PERSON", "TEAM", "AGENT") and
+        any(t not in GENERIC for t in analyze_query(n["matched_as"])["terms"]))]
+    if view == "auto" and not anchors and not analyze_query(question)["terms"]:
+        return {"matches": [], "nodes": [], "edges": [], "facts": [], "status": "no_matches",
+                "matches_truncated": False, "edges_truncated": False,
+                "traversal_limit_reached": False, "edges_examined": 0, "view": view,
+                "selection": {"policy": view, "terms": [], "locators": [], "candidate_count": 0,
+                              "selected_count": 0, "deduplicated": 0, "rejected": [],
+                              "more_available": False, "reason": "unscoped_prompt"}}
+    candidates = search_knowledge(database, question, include_history=include_history, limit=80)
+    if all_matches:
+        support = {}
+        related_ids = set()
+        for node in anchors:
+            if node["type"] == "CODE_ELEMENT":
+                for row in database.execute(
+                    """SELECT ef.fact_id,ef.target_id FROM graph_edge_facts ef
+                       WHERE ef.source_id=? AND ef.predicate='implements' LIMIT 80""", (node["id"],)):
+                    support[row["fact_id"]] = node["id"]
+                    related_ids.add(row["target_id"])
+        anchored = search_knowledge(database, "", include_history=include_history,
+                                    limit=80, node_ids=[n["id"] for n in all_matches[:MAX_MATCHES]] + sorted(related_ids)[:10])
+        candidates = anchored + candidates
+        candidates = [{**f, "anchor_node_id": support[f["id"]]} if f["id"] in support else f for f in candidates]
+    if entity:
+        candidates = [f for f in candidates if f["node_id"] in {n["id"] for n in all_matches}]
+    facts, selection = select_facts(candidates, question, anchors, automatic=view == "auto",
+                                   limit=min(3, fact_limit) if view == "auto" else fact_limit)
+    if view == "auto":
+        selected_ids = {f["node_id"] for f in facts}
+        selected_ids.update(f["anchor_node_id"] for f in facts if f.get("anchor_node_id"))
+        # Legacy graphs may only have exact, source-backed descriptions.
+        all_matches = [n for n in anchors if n["id"] in selected_ids or not candidates]
     exact_ids = {node["id"] for node in all_matches}
     for fact in facts:
         if fact["node_id"] and fact["node_id"] not in exact_ids:
@@ -259,7 +329,7 @@ def recall_graph(
     matches = all_matches[:MAX_MATCHES]
 
     if not matches:
-        return {
+        result = {
             "matches": [],
             "nodes": [],
             "edges": [],
@@ -270,18 +340,33 @@ def recall_graph(
             "facts": facts,
             "status": "matched" if facts else "no_matches" if database.execute("SELECT COUNT(*) FROM graph_nodes").fetchone()[0] else "empty_index",
         }
+        if view == "auto" or entity:
+            result.update(view=view, selection=selection)
+        return result
 
     edges, edges_truncated, limit_reached, examined = find_edges(
         database,
         matches,
         question,
-        hops=hops,
+        hops=0 if view == "auto" else hops,
         traversal_limit=traversal_limit,
         include_history=include_history,
     )
     nodes = load_nodes(database, matches, edges, include_history=include_history)
+    for node in nodes:
+        locator = database.execute("SELECT entity_key,code_path,symbol,code_kind FROM graph_entity_keys WHERE node_id=?",
+                                   (node["id"],)).fetchone()
+        if locator:
+            node["entity_key"] = locator["entity_key"]
+            if locator["code_path"]:
+                node["code"] = {"path": locator["code_path"], "symbol": locator["symbol"], "kind": locator["code_kind"]}
+    if entity and view == "detail":
+        neighborhood = search_knowledge(database, "", include_history=include_history,
+                                        limit=80, node_ids=[n["id"] for n in nodes])
+        facts, selection = select_facts(neighborhood, question, matches, limit=fact_limit)
+    attach_references(database, facts, include_history=include_history, automatic=view == "auto")
 
-    return {
+    result = {
         "matches": matches,
         "nodes": nodes,
         "edges": edges,
@@ -292,13 +377,52 @@ def recall_graph(
         "facts": facts,
         "status": "matched",
     }
+    result.update(view=view, selection=selection)
+    return result
+
+
+def attach_references(database, facts, *, include_history=False, automatic=False):
+    """Use only explicit evidence and supported code relationships; never guess tests."""
+    for fact in facts:
+        refs = []
+        for source in fact.get("sources", [fact]):
+            for evidence in source["evidence"]:
+                if evidence.get("code_path"):
+                    refs.append({"path": evidence["code_path"], "symbol": evidence.get("symbol"),
+                                 "source_doc": source["source_doc"]})
+        if fact.get("code"):
+            refs.append({**fact["code"], "source_doc": fact["source_doc"]})
+        rows = database.execute(
+            """SELECT DISTINCT k.code_path,k.symbol,e.source_doc
+               FROM graph_edges e JOIN graph_entity_keys k ON k.node_id=e.source_id
+               JOIN graph_edge_facts ef ON ef.source_id=e.source_id AND ef.target_id=e.target_id
+                 AND ef.predicate=e.predicate AND ef.source_doc=e.source_doc
+               JOIN graph_facts f ON f.id=ef.fact_id
+               LEFT JOIN knowledge_sources s ON s.source_doc=e.source_doc
+               LEFT JOIN extraction_results r ON r.source_doc=e.source_doc
+               WHERE e.target_id=? AND e.predicate='implements' AND k.code_path IS NOT NULL
+                 AND (? OR (COALESCE(s.active,1)=1 AND COALESCE(s.kind,'topic')='topic'
+                   AND f.state NOT IN ('historical','superseded')))
+                 AND (? OR r.source_hash IS NULL OR r.source_hash=s.content_hash)
+               ORDER BY k.code_path,k.symbol LIMIT 5""", (fact["node_id"], int(include_history), int(not automatic)))
+        refs.extend({"path": r["code_path"], "symbol": r["symbol"], "source_doc": r["source_doc"]} for r in rows)
+        seen = set()
+        fact["references"] = []
+        for ref in refs:
+            identity = (ref["path"], ref.get("symbol"), ref["source_doc"])
+            if identity not in seen:
+                seen.add(identity)
+                fact["references"].append(ref)
 
 
 def main():
     parser = argparse.ArgumentParser(
         description="Retrieve graph context for a question"
     )
-    parser.add_argument("question")
+    parser.add_argument("question", nargs="?", default="")
+    parser.add_argument("--view", choices=("auto", "detail"), default="detail")
+    parser.add_argument("--entity", help="Expand one canonical entity key")
+    parser.add_argument("--limit", type=int, default=10, help="Maximum facts, 1 to 50; auto caps at three")
     parser.add_argument("--hops", type=int, default=DEFAULT_HOPS)
     parser.add_argument("--include-history", action="store_true",
                         help="Include archived, deleted and superseded knowledge")
@@ -306,6 +430,11 @@ def main():
         "--traversal-limit", type=int, default=DEFAULT_TRAVERSAL_LIMIT
     )
     args = parser.parse_args()
+
+    if not args.question.strip() and not args.entity:
+        parser.error("Provide a question or --entity")
+    if not 1 <= args.limit <= 50:
+        parser.error("--limit must be between 1 and 50")
 
     if args.hops < 0:
         parser.error("--hops must be zero or greater")
@@ -330,7 +459,12 @@ def main():
             hops=args.hops,
             traversal_limit=args.traversal_limit,
             include_history=args.include_history,
+            view=args.view,
+            entity=args.entity,
+            fact_limit=args.limit,
         )
+    except ValueError as error:
+        parser.error(str(error))
     finally:
         database.close()
 

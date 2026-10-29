@@ -6,11 +6,11 @@ from paths import WATCHER_LOCK_PATH
 
 
 @contextmanager
-def watcher_lock():
-    WATCHER_LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
+def file_lock(lock_path):
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Keep this file in place: deleting it could let processes lock different inodes.
-    with WATCHER_LOCK_PATH.open("a+b") as lock:
+    with lock_path.open("a+b") as lock:
         try:
             if os.name == "nt":
                 import msvcrt
@@ -35,6 +35,12 @@ def watcher_lock():
                 msvcrt.locking(lock.fileno(), msvcrt.LK_UNLCK, 1)
             else:
                 fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
+
+
+@contextmanager
+def watcher_lock():
+    with file_lock(WATCHER_LOCK_PATH) as acquired:
+        yield acquired
 
 
 def watcher_is_running():
